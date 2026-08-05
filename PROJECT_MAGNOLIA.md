@@ -1956,3 +1956,303 @@ Rewrite it.
 ---
 
 END OF SECTION 6
+
+---
+
+# SECTION 7
+
+# Story Architecture
+
+## Philosophy
+
+People rarely remember websites.
+
+People remember how websites made them feel.
+
+Every page should tell a complete story.
+
+Not a collection of sections.
+
+Not a collection of features.
+
+A story.
+
+The visitor should naturally move from curiosity to understanding, from understanding to confidence, and from confidence to action.
+
+---
+
+# The Story Framework
+
+Every page should follow this emotional structure.
+
+## Chapter One
+
+Recognition
+
+The visitor should immediately recognize their own business.
+
+They should think:
+
+"That happens in my company."
+
+Recognition creates trust.
+
+---
+
+## Chapter Two
+
+Understanding
+
+Explain why the problem exists.
+
+Never blame.
+
+Never criticize.
+
+Help the visitor understand that operational challenges naturally appear as businesses grow.
+
+The goal is clarity.
+
+Not urgency.
+
+---
+
+## Chapter Three
+
+A Better Way
+
+Introduce the Revenue Recovery Framework™.
+
+Teach before selling.
+
+The Framework is education.
+
+Not the product.
+
+The visitor should begin thinking differently about their business.
+
+---
+
+## Chapter Four
+
+Implementation
+
+Only now introduce The HVAC Revenue Recovery Desk™.
+
+The product should feel like the natural conclusion of everything learned previously.
+
+The visitor should think:
+
+"That makes sense."
+
+Not:
+
+"Someone is trying to sell me software."
+
+---
+
+## Chapter Five
+
+Partnership
+
+Explain how Second Line AI works alongside Partners.
+
+Emphasize:
+
+Continuous Improvement.
+
+Hospitality.
+
+Long-term relationships.
+
+Professional accountability.
+
+Trust.
+
+The relationship should feel collaborative.
+
+Never transactional.
+
+---
+
+## Chapter Six
+
+Action
+
+Invite the visitor to begin with a Complimentary Revenue Recovery Assessment™.
+
+The visitor should already understand why the Assessment matters.
+
+The CTA should feel obvious.
+
+Not persuasive.
+
+---
+
+# Storytelling Principles
+
+Never begin with features.
+
+Begin with reality.
+
+Describe the world exactly as Louisiana HVAC owners experience it today.
+
+Busy offices.
+
+Phones ringing.
+
+Customers waiting.
+
+Dispatchers juggling priorities.
+
+Technicians in the field.
+
+Growing businesses.
+
+Recognition builds trust.
+
+---
+
+# Conflict
+
+Every story needs tension.
+
+The tension is never:
+
+Technology.
+
+The tension is:
+
+Missed opportunities.
+
+Inconsistent customer experience.
+
+Limited visibility.
+
+Operational complexity.
+
+These challenges create the need for Revenue Recovery.
+
+---
+
+# Resolution
+
+The Revenue Recovery Framework™ explains the solution.
+
+The HVAC Revenue Recovery Desk™ delivers the solution.
+
+The Revenue Recovery Partnership™ sustains the solution.
+
+This sequence should never change.
+
+---
+
+# Emotional Journey
+
+The visitor should move through these emotions.
+
+Recognition
+
+↓
+
+Curiosity
+
+↓
+
+Understanding
+
+↓
+
+Relief
+
+↓
+
+Confidence
+
+↓
+
+Trust
+
+↓
+
+Commitment
+
+Every page should reinforce this progression.
+
+---
+
+# Signature Quotes
+
+Every major page should include one centered editorial quote.
+
+Examples:
+
+Homepage
+
+"Recover More of the Revenue You're Already Paying to Generate."
+
+Revenue Recovery Framework™
+
+"The easiest revenue to recover is the revenue you've already paid to generate."
+
+Revenue Recovery Desk™
+
+"Every opportunity deserves a professional response."
+
+Founding Partner Program™
+
+"Great partnerships are built on trust long before they are built on technology."
+
+About
+
+"Protect Every Opportunity."
+
+These quotes become visual anchors throughout the experience.
+
+---
+
+# Visual Storytelling
+
+Photography should tell the story before the visitor begins reading.
+
+Illustrations should simplify.
+
+Diagrams should educate.
+
+Animations should reinforce understanding.
+
+No visual element should exist solely for decoration.
+
+---
+
+# The Magnolia Principle
+
+Every page should answer one question before introducing the next.
+
+Visitors should never feel overwhelmed.
+
+Visitors should never wonder where they are.
+
+Visitors should never ask:
+
+"Why are they showing me this?"
+
+Every section should naturally lead into the next.
+
+---
+
+# Final Story Test
+
+If a visitor closes the website after reading only one page...
+
+They should remember one thing:
+
+Second Line AI understands my business better than anyone else I've spoken with.
+
+If they remember the technology instead...
+
+The story has failed.
+
+---
+
+END OF SECTION 7
