@@ -1149,3 +1149,453 @@ Overly polished.
 ---
 
 END OF SECTION 4
+
+---
+
+# SECTION 5
+
+# User Interface Components & Interaction Design
+
+## Philosophy
+
+Every interaction should feel intentional.
+
+Every button should invite confidence.
+
+Every card should communicate clarity.
+
+Every hover state should reinforce quality.
+
+Every animation should feel effortless.
+
+Nothing should feel accidental.
+
+Nothing should exist simply because it "looks cool."
+
+---
+
+# Component System
+
+Every component should belong to one unified design system.
+
+Never introduce one-off components.
+
+Everything should feel like part of the same family.
+
+The UI should remain consistent across every page.
+
+---
+
+# Buttons
+
+Buttons should feel substantial.
+
+Large.
+
+Comfortable.
+
+Confident.
+
+Never tiny.
+
+Never overly rounded.
+
+Never aggressive.
+
+Primary buttons use:
+
+Deep Emerald background.
+
+Warm Ivory typography.
+
+Subtle elevation.
+
+Soft shadow.
+
+Hover:
+
+Slight lift.
+
+Slight shadow increase.
+
+Very subtle darkening.
+
+Animation duration:
+
+200ms.
+
+---
+
+Secondary Buttons
+
+Transparent.
+
+Deep Emerald border.
+
+Deep Emerald typography.
+
+Hover:
+
+Fill with Deep Emerald.
+
+Typography becomes Warm Ivory.
+
+No dramatic movement.
+
+---
+
+# Cards
+
+Cards should resemble premium presentation materials.
+
+Rounded corners.
+
+24px radius.
+
+Generous internal spacing.
+
+Soft shadows.
+
+Thin borders.
+
+Minimal content.
+
+Cards should never appear cramped.
+
+Each card communicates one idea.
+
+---
+
+# Icons
+
+Icons should be custom.
+
+Thin line weight.
+
+Rounded geometry.
+
+Deep Emerald.
+
+Consistent stroke width.
+
+Never use generic icon packs.
+
+Icons should feel designed specifically for Second Line AI.
+
+---
+
+# Timeline Components
+
+The Revenue Recovery Framework™
+
+should become one of the signature interactive elements.
+
+The timeline should animate into view gradually as the visitor scrolls.
+
+Each step appears naturally.
+
+Never all at once.
+
+Motion should reinforce understanding.
+
+---
+
+# Forms
+
+Forms should feel conversational.
+
+Never intimidating.
+
+Large fields.
+
+Minimal required information.
+
+Clear labels.
+
+Helpful descriptions.
+
+Excellent spacing.
+
+Validation should feel supportive.
+
+Never harsh.
+
+---
+
+# Progress Experience
+
+Multi-step forms should include:
+
+Simple progress indicator.
+
+Current step.
+
+Remaining steps.
+
+Estimated completion time.
+
+The visitor should always know where they are.
+
+---
+
+# Navigation
+
+Navigation remains minimal.
+
+Sticky after scrolling.
+
+Transparent over hero.
+
+Transitions should feel seamless.
+
+No dropdown menus unless absolutely necessary.
+
+---
+
+# Mobile Navigation
+
+Simple.
+
+Elegant.
+
+Large tap targets.
+
+No complicated flyouts.
+
+No nested menus.
+
+One thumb should comfortably navigate the entire experience.
+
+---
+
+# Hover States
+
+Every hover state should communicate:
+
+Responsiveness.
+
+Quality.
+
+Confidence.
+
+Never distraction.
+
+Never gimmicks.
+
+---
+
+# Dividers
+
+Use subtle dividers.
+
+Warm Stone.
+
+Occasional Antique Gold accents.
+
+Large spacing above and below.
+
+Dividers should organize content—not decorate it.
+
+---
+
+# Typography Hierarchy
+
+Every page should maintain strict hierarchy.
+
+Hero.
+
+Section.
+
+Subsection.
+
+Body.
+
+Caption.
+
+Never violate the hierarchy.
+
+Visitors should immediately know what deserves attention.
+
+---
+
+# Images
+
+Images should never feel trapped inside containers.
+
+Whenever appropriate:
+
+Use full-width editorial photography.
+
+Allow the imagery to breathe.
+
+---
+
+# Quotes
+
+Every page should contain one signature quote.
+
+Large typography.
+
+Centered.
+
+Elegant.
+
+Subtle Antique Gold divider.
+
+The quote should become a visual pause in the experience.
+
+---
+
+# Dashboard Components
+
+Dashboards should resemble executive reporting.
+
+Not software dashboards.
+
+Minimal charts.
+
+Meaningful numbers.
+
+Beautiful spacing.
+
+Elegant typography.
+
+No unnecessary widgets.
+
+---
+
+# Tables
+
+Avoid large tables whenever possible.
+
+Prefer beautifully designed cards.
+
+If tables are required:
+
+Large spacing.
+
+Minimal borders.
+
+Excellent readability.
+
+---
+
+# FAQ Components
+
+Use elegant accordions.
+
+Smooth expansion.
+
+Generous spacing.
+
+Clear typography.
+
+No harsh borders.
+
+No clutter.
+
+---
+
+# Loading States
+
+Never use generic loading spinners.
+
+Instead:
+
+Subtle fade.
+
+Elegant logo animation.
+
+One second maximum.
+
+The experience should feel intentional.
+
+---
+
+# Empty States
+
+Every empty state should educate.
+
+Never simply say:
+
+"No data."
+
+Instead explain:
+
+Why.
+
+What happens next.
+
+How to proceed.
+
+---
+
+# Error States
+
+Error messages should feel helpful.
+
+Calm.
+
+Professional.
+
+Specific.
+
+Never technical.
+
+Never alarming.
+
+Always provide a solution.
+
+---
+
+# Accessibility
+
+Every interactive component must support:
+
+Keyboard navigation.
+
+Visible focus states.
+
+Screen readers.
+
+Reduced motion.
+
+High contrast.
+
+Accessible touch targets.
+
+Accessibility is part of premium design.
+
+---
+
+# Component Rule
+
+Every component must answer one question:
+
+"Does this increase trust?"
+
+If not...
+
+Redesign it.
+
+---
+
+# Final Interaction Test
+
+Every click should feel:
+
+Predictable.
+
+Professional.
+
+Intentional.
+
+Effortless.
+
+The visitor should never wonder whether something worked.
+
+Feedback should always be immediate.
+
+---
+
+END OF SECTION 5
