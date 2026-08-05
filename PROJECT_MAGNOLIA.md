@@ -1599,3 +1599,360 @@ Feedback should always be immediate.
 ---
 
 END OF SECTION 5
+
+---
+
+# SECTION 6
+
+# Copywriting & Messaging System
+
+## Philosophy
+
+Second Line AI does not sound like a software company.
+
+Second Line AI does not sound like a marketing agency.
+
+Second Line AI does not sound like an AI startup.
+
+Second Line AI speaks like a trusted business advisor who genuinely understands the operational challenges of Louisiana HVAC companies.
+
+Our language should communicate confidence through clarity.
+
+Never complexity.
+
+---
+
+# Our Voice
+
+Our voice is:
+
+Professional.
+
+Warm.
+
+Calm.
+
+Respectful.
+
+Knowledgeable.
+
+Confident.
+
+Thoughtful.
+
+Helpful.
+
+Measured.
+
+Never rushed.
+
+---
+
+# We Teach Before We Sell
+
+Every page should educate before asking for action.
+
+The visitor should leave every page understanding something valuable—even if they never become a Partner.
+
+Education creates trust.
+
+Trust creates action.
+
+---
+
+# Writing Style
+
+Every sentence should be:
+
+Short.
+
+Clear.
+
+Purposeful.
+
+Natural.
+
+Readable.
+
+Avoid unnecessary adjectives.
+
+Avoid marketing clichés.
+
+Avoid hype.
+
+Never write simply to impress.
+
+Write to help someone understand.
+
+---
+
+# We Speak Like Humans
+
+Write naturally.
+
+Never sound robotic.
+
+Never overuse buzzwords.
+
+Never force excitement.
+
+Never use exaggerated marketing language.
+
+Our confidence comes from professionalism—not exaggeration.
+
+---
+
+# Language We Prefer
+
+Partner
+
+Revenue Recovery
+
+Opportunity
+
+Customer Experience
+
+Professional
+
+Reliable
+
+Consistent
+
+Assessment
+
+Framework
+
+Visibility
+
+Accountability
+
+Hospitality
+
+Partnership
+
+Continuous Improvement
+
+Operational Excellence
+
+---
+
+# Language We Avoid
+
+Artificial Intelligence Revolution
+
+Game-Changing
+
+Cutting Edge
+
+Industry Disruptor
+
+Next Generation
+
+Leverage
+
+Synergy
+
+Growth Hack
+
+World Class
+
+Best In Class
+
+10X
+
+Scale Faster
+
+Revolutionary
+
+Hyper Automation
+
+AI-Powered Everything
+
+These phrases reduce trust.
+
+Avoid them.
+
+---
+
+# Product Language
+
+Always use the complete product names.
+
+Correct:
+
+The HVAC Revenue Recovery Desk™
+
+Incorrect:
+
+The Desk
+
+Correct:
+
+Revenue Recovery Framework™
+
+Incorrect:
+
+Framework
+
+Correct:
+
+Complimentary Revenue Recovery Assessment™
+
+Incorrect:
+
+Consultation
+
+Never shorten product names during first reference.
+
+---
+
+# Headlines
+
+Headlines should communicate outcomes.
+
+Not features.
+
+Examples:
+
+Recover More of the Revenue You're Already Paying to Generate.
+
+Protect Every Opportunity.
+
+Your Business Doesn't Need More Leads.
+It Needs Better Revenue Recovery.
+
+Never write feature headlines like:
+
+24/7 AI Receptionist
+
+Automation Platform
+
+Voice AI Solution
+
+---
+
+# Paragraphs
+
+Paragraphs should feel conversational.
+
+Never exceed six lines on desktop.
+
+Large blocks of text reduce confidence.
+
+---
+
+# Calls To Action
+
+Calls to action should feel like invitations.
+
+Not demands.
+
+Preferred:
+
+Book Your Complimentary Revenue Recovery Assessment™
+
+See How It Works
+
+Become a Founding Partner
+
+Get Started
+
+Avoid:
+
+Buy Now
+
+Claim Your Spot
+
+Act Fast
+
+Limited Time Offer
+
+---
+
+# Emotional Sequence
+
+Every page should guide visitors through this progression:
+
+Recognition
+
+↓
+
+Understanding
+
+↓
+
+Confidence
+
+↓
+
+Partnership
+
+↓
+
+Action
+
+Never skip steps.
+
+---
+
+# The Customer Is The Hero
+
+Second Line AI is never the hero.
+
+Marie is never the hero.
+
+Technology is never the hero.
+
+The HVAC business owner is always the hero.
+
+We simply help them succeed.
+
+---
+
+# Writing Rule
+
+If a sentence sounds like it belongs on an AI startup website...
+
+Delete it.
+
+Rewrite it.
+
+---
+
+# Signature Principles
+
+Throughout the website, reinforce these ideas repeatedly:
+
+Protect Every Opportunity.
+
+Recover More of the Revenue You're Already Paying to Generate.
+
+Trust Before Technology.
+
+Partnership Before Product.
+
+Teach Before Asking.
+
+Hospitality Wins.
+
+These become recognizable principles of the brand.
+
+---
+
+# Final Messaging Test
+
+Before publishing any sentence, ask:
+
+Would this increase trust?
+
+Would this make an HVAC owner feel understood?
+
+Would this sound just as appropriate five years from now?
+
+If not...
+
+Rewrite it.
+
+---
+
+END OF SECTION 6
