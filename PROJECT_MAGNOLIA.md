@@ -2256,3 +2256,359 @@ The story has failed.
 ---
 
 END OF SECTION 7
+
+---
+
+# SECTION 8
+
+# Engineering & Development Standards
+
+## Philosophy
+
+Project Magnolia should be engineered like a premium software product.
+
+Code quality is part of the customer experience.
+
+Future developers should immediately understand the architecture.
+
+Every component should have one responsibility.
+
+Every file should have one purpose.
+
+Everything should be maintainable.
+
+---
+
+# Framework
+
+Use Astro as the primary framework.
+
+Favor server-rendered static content wherever possible.
+
+Hydrate only the components that truly require JavaScript.
+
+Avoid unnecessary client-side JavaScript.
+
+Performance is a feature.
+
+---
+
+# Architecture
+
+Create a component-driven architecture.
+
+Never duplicate layouts.
+
+Never duplicate navigation.
+
+Never duplicate footer code.
+
+Everything should be reusable.
+
+---
+
+Recommended structure:
+
+src/
+
+components/
+
+layouts/
+
+pages/
+
+styles/
+
+lib/
+
+assets/
+
+content/
+
+public/
+
+---
+
+# Components
+
+Every visual element should become a reusable component.
+
+Examples:
+
+Header
+
+Footer
+
+Navigation
+
+Hero
+
+Button
+
+Card
+
+Section
+
+Timeline
+
+Framework Diagram
+
+CTA
+
+Quote Block
+
+Feature Card
+
+Icon Card
+
+Assessment Banner
+
+Partner CTA
+
+Certificate Preview
+
+Dashboard Preview
+
+FAQ Accordion
+
+Form Field
+
+Everything should be modular.
+
+---
+
+# Layout System
+
+Every page should inherit from one master layout.
+
+No duplicated HTML.
+
+The navigation and footer should exist only once.
+
+---
+
+# Styling
+
+Maintain one design system.
+
+One spacing scale.
+
+One typography system.
+
+One color system.
+
+One shadow system.
+
+One animation system.
+
+Avoid inline styling.
+
+Avoid duplicated CSS.
+
+---
+
+# Performance
+
+Every page should target:
+
+Lighthouse Performance:
+
+95+
+
+Accessibility:
+
+100
+
+SEO:
+
+100
+
+Best Practices:
+
+100
+
+Performance is non-negotiable.
+
+---
+
+# Images
+
+Use responsive images.
+
+Lazy-load below-the-fold imagery.
+
+Optimize every asset.
+
+Never load oversized images.
+
+Prefer modern formats.
+
+---
+
+# Fonts
+
+Self-host typography.
+
+Avoid render-blocking font loading.
+
+Typography should appear elegant without causing layout shifts.
+
+---
+
+# Motion
+
+Animations should respect:
+
+prefers-reduced-motion
+
+Motion should remain subtle.
+
+Never animate for decoration.
+
+Animate only to improve understanding.
+
+---
+
+# Accessibility
+
+Every page must support:
+
+Keyboard navigation
+
+Screen readers
+
+Visible focus states
+
+Semantic HTML
+
+Accessible color contrast
+
+Proper heading hierarchy
+
+Accessible forms
+
+Accessibility should never be sacrificed for aesthetics.
+
+---
+
+# Forms
+
+Every form should:
+
+Validate gracefully.
+
+Explain errors clearly.
+
+Preserve entered information.
+
+Reduce friction.
+
+Never frustrate the visitor.
+
+---
+
+# SEO
+
+Every page should include:
+
+Unique title
+
+Unique meta description
+
+Open Graph image
+
+Twitter card
+
+Structured data
+
+Canonical URL
+
+Appropriate heading hierarchy
+
+Meaningful alt text
+
+Readable URLs
+
+Automatic sitemap
+
+robots.txt
+
+---
+
+# Security
+
+Preserve:
+
+Netlify deployment
+
+Existing legal pages
+
+HTTPS
+
+Secure form handling
+
+Never expose sensitive information.
+
+---
+
+# Git Workflow
+
+Never modify the main branch directly.
+
+Use:
+
+feature/project-magnolia-v2
+
+All work should remain isolated until approved.
+
+---
+
+# Code Quality
+
+Write code as though another senior engineer will maintain it.
+
+Readable.
+
+Documented.
+
+Organized.
+
+Predictable.
+
+Avoid cleverness.
+
+Prefer clarity.
+
+---
+
+# Future Growth
+
+Project Magnolia should become the foundation for:
+
+Partner Dashboard™
+
+Revenue Recovery Reports™
+
+Partner Portal™
+
+Resource Library™
+
+Revenue Recovery Platform™
+
+The architecture should support future expansion without requiring another rebuild.
+
+---
+
+# Final Engineering Rule
+
+Every engineering decision should answer:
+
+"Will this make Second Line AI easier to improve over the next five years?"
+
+If the answer is no...
+
+Choose another solution.
+
+---
+
+END OF SECTION 8
