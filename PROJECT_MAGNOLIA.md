@@ -719,3 +719,433 @@ Then the design has failed.
 ---
 
 END OF SECTION 3
+
+---
+
+# SECTION 4
+
+# Photography, Cinematography & Image Direction
+
+## Philosophy
+
+Photography is the emotional foundation of Project Magnolia.
+
+The photography should communicate trust before a single word is read.
+
+Images should never exist simply to decorate the page.
+
+Every photograph must support the story being told.
+
+Visitors should feel as though they are looking through the pages of a luxury editorial publication rather than a software company's website.
+
+---
+
+# Overall Photography Style
+
+Natural.
+
+Elegant.
+
+Authentic.
+
+Warm.
+
+Editorial.
+
+Timeless.
+
+Quietly confident.
+
+Professional.
+
+Never staged.
+
+Never cheesy.
+
+Never corporate.
+
+---
+
+# Visual Mood
+
+Imagine every photograph could appear in:
+
+Architectural Digest
+
+Kinfolk
+
+Monocle
+
+Ralph Lauren Home
+
+Four Seasons Magazine
+
+Not stock photography websites.
+
+---
+
+# Lighting
+
+Natural light whenever possible.
+
+Golden hour.
+
+Morning light.
+
+Soft afternoon light.
+
+Warm interiors.
+
+Avoid harsh shadows.
+
+Avoid dramatic HDR effects.
+
+Avoid over-saturated colors.
+
+---
+
+# Color Grading
+
+Rich Deep Emerald.
+
+Warm Ivory.
+
+Natural wood.
+
+Stone.
+
+Brass.
+
+Slate.
+
+Natural skin tones.
+
+Muted greens.
+
+Soft contrast.
+
+The grading should feel timeless.
+
+---
+
+# Composition
+
+Wide compositions.
+
+Breathing room.
+
+Negative space.
+
+Intentional framing.
+
+Minimal clutter.
+
+Every composition should allow typography to sit naturally within the image.
+
+---
+
+# Human Subjects
+
+Real professionals.
+
+Real homeowners.
+
+Real technicians.
+
+Never models posing directly at the camera.
+
+People should appear focused on meaningful work.
+
+The camera should feel like an observer.
+
+Not a participant.
+
+---
+
+# HVAC Technicians
+
+Technicians should appear:
+
+Professional.
+
+Confident.
+
+Organized.
+
+Clean.
+
+Well-presented.
+
+Never dirty.
+
+Never sloppy.
+
+Never exaggerated.
+
+The technician represents the professionalism of the Partner.
+
+---
+
+# Louisiana
+
+Louisiana should be communicated subtly.
+
+Avoid:
+
+Mardi Gras
+
+Beads
+
+Jazz instruments
+
+Street performers
+
+Tourist imagery
+
+Instead use:
+
+Live oaks.
+
+Historic architecture.
+
+Garden District inspiration.
+
+Beautiful front porches.
+
+Wrought iron.
+
+Southern neighborhoods.
+
+Warm evening light.
+
+Beautiful residential streets.
+
+Hospitality.
+
+---
+
+# Hero Image
+
+Objective:
+
+Create immediate trust.
+
+Scene:
+
+A professionally dressed HVAC technician walking confidently toward a beautiful Louisiana home during golden hour.
+
+A clean service vehicle is visible in the background.
+
+The technician is carrying minimal equipment.
+
+The image should communicate:
+
+Professionalism.
+
+Preparedness.
+
+Confidence.
+
+Respect.
+
+Hospitality.
+
+---
+
+# The Problem Section
+
+Scene:
+
+Inside a professional office.
+
+One office coordinator is helping a homeowner.
+
+A second phone is ringing.
+
+The office feels busy.
+
+Not chaotic.
+
+Visitors should immediately recognize:
+
+"That happens here."
+
+---
+
+# Revenue Recovery Framework™
+
+Do not use photography.
+
+Use elegant illustrations.
+
+Minimal.
+
+Architectural.
+
+Executive.
+
+The Framework should become one of the signature visual assets of the brand.
+
+---
+
+# Revenue Recovery Desk™
+
+Scene:
+
+Business owner reviewing beautiful reports.
+
+Dashboard visible.
+
+Coffee.
+
+Notebook.
+
+Natural lighting.
+
+Calm environment.
+
+The image should communicate:
+
+Control.
+
+Visibility.
+
+Confidence.
+
+---
+
+# Founding Partner Program™
+
+Feature:
+
+Revenue Recovery Founding Partner Certificate.
+
+Beautifully framed.
+
+Embossed seal.
+
+Heavy textured paper.
+
+Elegant typography.
+
+The certificate should feel prestigious.
+
+Visitors should want to earn it.
+
+---
+
+# About Page
+
+Founder photography should feel:
+
+Authentic.
+
+Confident.
+
+Approachable.
+
+Professional.
+
+No crossed arms.
+
+No forced smiles.
+
+No dramatic poses.
+
+No overly casual clothing.
+
+The founder should appear calm, prepared, and trustworthy.
+
+---
+
+# Dashboard Imagery
+
+Dashboards should feel executive.
+
+Simple.
+
+Clean.
+
+Minimal.
+
+No unnecessary charts.
+
+Only meaningful metrics.
+
+Large typography.
+
+Beautiful spacing.
+
+Executive reporting.
+
+---
+
+# Reports
+
+Every report should look suitable for presentation in a boardroom.
+
+Professional.
+
+Elegant.
+
+Readable.
+
+Never resemble software exports.
+
+---
+
+# Mobile Photography
+
+Every photograph must crop beautifully on mobile devices.
+
+The subject should remain clear.
+
+Typography should never cover important visual elements.
+
+---
+
+# Final Photography Rule
+
+Every image must answer one question:
+
+"What emotion should this photograph create?"
+
+If that answer cannot be identified clearly...
+
+The image should not be used.
+
+---
+
+# Photography Test
+
+Visitors should describe the photography using words like:
+
+Authentic.
+
+Premium.
+
+Trustworthy.
+
+Professional.
+
+Refined.
+
+Warm.
+
+Human.
+
+Never:
+
+Stock.
+
+Corporate.
+
+Generic.
+
+Artificial.
+
+Overly polished.
+
+---
+
+END OF SECTION 4
