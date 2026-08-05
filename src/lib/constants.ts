@@ -39,3 +39,25 @@ export const CONTACT = {
   emailHref: 'mailto:bookmore@secondlineai.com',
   location: 'Baton Rouge, Louisiana',
 } as const;
+
+/**
+ * Only the Homepage has been rebuilt so far. Every other nav destination
+ * still points at its legacy (public/*.html) page and keeps its legacy
+ * label — pointing a new Magnolia-branded label at an unrebuilt, old-styled
+ * page would be misleading. These get replaced page-by-page as each one is
+ * rebuilt in a later phase.
+ */
+export const NAV_LINKS = [
+  { label: 'Home', href: '/' },
+  { label: 'How It Works', href: '/how-it-works.html' },
+  { label: 'Meet Marie', href: '/meet-marie.html' },
+  { label: 'Revenue Recovery Audit', href: '/revenue-recovery-audit.html' },
+  { label: 'About', href: '/about.html' },
+  { label: 'FAQ', href: '/faq.html' },
+  { label: 'Contact', href: '/contact.html' },
+] as const;
+
+export const LEGAL_LINKS = [
+  { label: 'Privacy Policy', href: '/privacy-policy.html' },
+  { label: 'Terms and Conditions', href: '/terms.html' },
+] as const;

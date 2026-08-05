@@ -1,0 +1,66 @@
+---
+import Button from '@components/Button.astro';
+import Eyebrow from '@components/Eyebrow.astro';
+import { BOOKING_URL, CONTACT } from '@lib/constants';
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  body?: string;
+  primaryLabel?: string;
+  showPhone?: boolean;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  heading,
+  body,
+  primaryLabel = 'Book Your Complimentary Revenue Recovery Assessment™',
+  showPhone = false,
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={['cta-banner', className]}>
+  {eyebrow && <Eyebrow center>{eyebrow}</Eyebrow>}
+  <h2>{heading}</h2>
+  {body && <p class="cta-body">{body}</p>}
+  <div class="cta-actions">
+    <Button href={BOOKING_URL} variant="primary" size="large" external>
+      {primaryLabel}
+    </Button>
+    {
+      showPhone && (
+        <Button href={CONTACT.phoneHref} variant="secondary" size="large">
+          Call {CONTACT.phoneDisplay}
+        </Button>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .cta-banner {
+    max-width: 720px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .cta-banner h2 {
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-body {
+    font-size: var(--text-lede);
+    opacity: 0.9;
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+</style>

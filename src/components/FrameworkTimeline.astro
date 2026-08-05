@@ -1,0 +1,138 @@
+---
+/**
+ * Signature interactive element for The Revenue Recovery Framework™
+ * (PROJECT_MAGNOLIA.md sections 4 & 5): minimal, architectural, illustrated
+ * — never photography. Reveals one step at a time on scroll. Content is
+ * fully visible with no JavaScript; the reveal is a progressive enhancement
+ * layered on top via a class the script itself adds, so nothing depends on
+ * JS to be readable.
+ */
+interface Step {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  steps: Step[];
+  class?: string;
+}
+
+const { steps, class: className } = Astro.props;
+---
+
+<ol class:list={['timeline', className]} data-timeline>
+  {
+    steps.map((step, i) => (
+      <li class="timeline-step" data-timeline-step>
+        <div class="timeline-marker" aria-hidden="true">
+          <span class="timeline-number">{String(i + 1).padStart(2, '0')}</span>
+        </div>
+        <div class="timeline-content">
+          <h3>{step.title}</h3>
+          <p>{step.description}</p>
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    counter-reset: step;
+  }
+
+  .timeline-step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    column-gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--color-line-on-dark);
+    opacity: 1;
+    transform: none;
+  }
+
+  .timeline-step:last-child {
+    border-bottom: 1px solid var(--color-line-on-dark);
+  }
+
+  :global(.timeline.js-reveal) .timeline-step {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity var(--duration-slow) var(--ease-out),
+      transform var(--duration-slow) var(--ease-out);
+  }
+
+  :global(.timeline.js-reveal) .timeline-step.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .timeline-marker {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 2px;
+  }
+
+  .timeline-number {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--color-gold-light);
+    line-height: 1;
+  }
+
+  .timeline-content h3 {
+    color: var(--color-ivory);
+    font-size: var(--text-subsection);
+    margin-bottom: var(--space-1);
+  }
+
+  .timeline-content p {
+    margin: 0;
+    color: var(--color-ivory-dim);
+    max-width: 60ch;
+  }
+
+  @media (max-width: 640px) {
+    .timeline-step {
+      grid-template-columns: 40px 1fr;
+      column-gap: var(--space-2);
+    }
+
+    .timeline-number {
+      font-size: 1.375rem;
+    }
+  }
+</style>
+
+<script>
+  const timelines = document.querySelectorAll<HTMLElement>('[data-timeline]');
+
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    timelines.forEach((timeline) => {
+      timeline.classList.add('js-reveal');
+      const steps = timeline.querySelectorAll('[data-timeline-step]');
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+      );
+
+      steps.forEach((step) => observer.observe(step));
+    });
+  }
+</script>

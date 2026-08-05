@@ -1,0 +1,99 @@
+---
+/**
+ * Canonical section wrapper — enforces the Visual Rhythm alternation
+ * (Ivory / Emerald / Ivory / Charcoal / Ivory) and the exact section
+ * spacing scale (160/120/80) from PROJECT_MAGNOLIA.md section 3.
+ */
+interface Props {
+  tone?: 'ivory' | 'ivory-soft' | 'emerald' | 'charcoal';
+  center?: boolean;
+  tight?: boolean;
+  id?: string;
+  class?: string;
+}
+
+const {
+  tone = 'ivory',
+  center = false,
+  tight = false,
+  id,
+  class: className,
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    'section',
+    `section--${tone}`,
+    { 'section--center': center, 'section--tight': tight },
+    className,
+  ]}
+>
+  <div class="container">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    padding-block: var(--space-section-mobile);
+  }
+
+  @media (min-width: 640px) {
+    .section {
+      padding-block: var(--space-section-tablet);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: var(--space-section-desktop);
+    }
+  }
+
+  .section--tight {
+    padding-block: var(--space-6);
+  }
+
+  .section--ivory {
+    background: var(--color-ivory);
+    color: var(--color-obsidian);
+  }
+
+  .section--ivory-soft {
+    background: var(--color-ivory-soft);
+    color: var(--color-obsidian);
+  }
+
+  .section--emerald {
+    background: linear-gradient(
+      160deg,
+      var(--color-emerald) 0%,
+      var(--color-emerald-deep) 100%
+    );
+    color: var(--color-ivory);
+  }
+
+  .section--charcoal {
+    background: linear-gradient(
+      160deg,
+      var(--color-charcoal) 0%,
+      var(--color-charcoal-deep) 100%
+    );
+    color: var(--color-ivory-dim);
+  }
+
+  .section--emerald :global(h1),
+  .section--emerald :global(h2),
+  .section--emerald :global(h3),
+  .section--charcoal :global(h1),
+  .section--charcoal :global(h2),
+  .section--charcoal :global(h3) {
+    color: var(--color-ivory);
+  }
+
+  .section--center {
+    text-align: center;
+  }
+</style>

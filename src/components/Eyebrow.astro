@@ -1,0 +1,51 @@
+---
+interface Props {
+  center?: boolean;
+  class?: string;
+}
+
+const { center = false, class: className } = Astro.props;
+---
+
+<div class:list={['eyebrow', { 'eyebrow--center': center }, className]}>
+  <slot />
+</div>
+
+<style>
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: var(--space-3);
+  }
+
+  .eyebrow--center {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 26px;
+    height: 1px;
+    background: var(--color-gold);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  :global(.section--emerald) .eyebrow,
+  :global(.section--charcoal) .eyebrow {
+    color: var(--color-gold-light);
+  }
+
+  :global(.section--emerald) .eyebrow::before,
+  :global(.section--charcoal) .eyebrow::before {
+    background: var(--color-gold-light);
+  }
+</style>

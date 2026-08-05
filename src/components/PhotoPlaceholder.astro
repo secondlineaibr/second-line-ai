@@ -1,0 +1,73 @@
+---
+/**
+ * Stands in for real editorial photography (PROJECT_MAGNOLIA.md section 4)
+ * until an actual shoot/sourcing plan exists. Reserves the exact aspect
+ * ratio the final photograph will use (no layout shift on replacement) and
+ * visibly labels itself as a placeholder rather than pretending to be a
+ * finished image — per the approved decision, nothing fake is presented
+ * as final.
+ */
+interface Props {
+  ratio: string;
+  label: string;
+  scene: string;
+  class?: string;
+}
+
+const { ratio, label, scene, class: className } = Astro.props;
+---
+
+<figure class:list={['photo-placeholder', className]} style={`--ratio: ${ratio}`}>
+  <div class="photo-placeholder__frame" role="img" aria-label={scene}>
+    <span class="photo-placeholder__tag">Photography pending — {label}</span>
+    <p class="photo-placeholder__scene">{scene}</p>
+  </div>
+</figure>
+
+<style>
+  .photo-placeholder {
+    margin: 0;
+  }
+
+  .photo-placeholder__frame {
+    aspect-ratio: var(--ratio);
+    width: 100%;
+    border-radius: var(--radius-card);
+    background:
+      repeating-linear-gradient(
+        135deg,
+        rgba(20, 21, 15, 0.04) 0px,
+        rgba(20, 21, 15, 0.04) 2px,
+        transparent 2px,
+        transparent 14px
+      ),
+      linear-gradient(160deg, var(--color-stone) 0%, var(--color-ivory-dim) 100%);
+    border: 1px solid var(--color-line-on-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-2);
+    padding: var(--space-4);
+  }
+
+  .photo-placeholder__tag {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-emerald-deep);
+    background: rgba(246, 241, 227, 0.75);
+    padding: 6px 14px;
+    border-radius: 30px;
+  }
+
+  .photo-placeholder__scene {
+    max-width: 46ch;
+    font-size: 0.875rem;
+    color: var(--color-slate);
+    margin: 0;
+  }
+</style>
