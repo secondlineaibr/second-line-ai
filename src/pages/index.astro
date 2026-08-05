@@ -10,6 +10,7 @@ import Quote from '@components/Quote.astro';
 import CtaBanner from '@components/CtaBanner.astro';
 import PhotoPlaceholder from '@components/PhotoPlaceholder.astro';
 import FrameworkTimeline from '@components/FrameworkTimeline.astro';
+import FaqAccordion from '@components/FaqAccordion.astro';
 import { CONTACT, BOOKING_URL, SITE_URL, SITE_NAME } from '@lib/constants';
 
 const localBusinessSchema = {
@@ -100,6 +101,39 @@ const notAFit = [
   'You are looking for a generic, one-size-fits-all answering bot.',
   'You are not ready to invest in a long-term partnership.',
 ];
+
+const faqItems = [
+  {
+    question: 'What is The HVAC Revenue Recovery Desk™?',
+    answer:
+      'A fully managed system designed to help answer calls, capture customer information, support scheduling workflows, document service opportunities, and reduce the number of qualified calls lost to voicemail or delayed follow-up.',
+  },
+  {
+    question: 'Will this replace my office staff?',
+    answer:
+      'No. Second Line AI is not designed around replacing valuable employees. Your Revenue Recovery Desk™ supports your office staff by handling repetitive intake, overflow calls, after-hours requests, and information capture.',
+  },
+  {
+    question: 'Does Second Line AI guarantee more revenue?',
+    answer:
+      'No. We do not guarantee revenue, sales, appointment volume, or specific business outcomes. Results depend on call volume, customer demand, staff follow-up, pricing, service quality, and your sales process — a Revenue Recovery Partnership™ improves the system, not the market you operate in.',
+  },
+  {
+    question: 'What is included in the Complimentary Revenue Recovery Assessment™?',
+    answer:
+      'A focused, seventeen-minute review of your current call-handling process, where revenue may be leaking, and whether a Revenue Recovery Partnership™ makes sense for your company. There is no cost and no obligation.',
+  },
+  {
+    question: 'How much does this cost?',
+    answer:
+      'Pricing depends on the scope of your Revenue Recovery Desk™, call volume, integrations, and ongoing management needs. We discuss pricing after your Complimentary Revenue Recovery Assessment™, once we understand your operation.',
+  },
+  {
+    question: 'How do I get started?',
+    answer:
+      'Book your Complimentary Revenue Recovery Assessment™ using the button on this page, or email bookmore@secondlineai.com.',
+  },
+];
 ---
 
 <Layout
@@ -129,8 +163,8 @@ const notAFit = [
             <Button href={BOOKING_URL} variant="primary" size="large" external>
               Book Your Complimentary Revenue Recovery Assessment™
             </Button>
-            <Button href={CONTACT.phoneHref} variant="secondary" size="large">
-              Call {CONTACT.phoneDisplay}
+            <Button href="/how-it-works.html" variant="secondary" size="large">
+              See How It Works
             </Button>
           </div>
           <p class="hero-note">
@@ -178,19 +212,23 @@ const notAFit = [
       </div>
     </SectionWrap>
 
-    <!-- ============ CHAPTER TWO — Understanding ============ -->
+    <!-- ============ The Opportunity & the Revenue Recovery Category ============ -->
     <SectionWrap tone="emerald" center>
       <div class="max-720 mx-auto">
-        <Eyebrow center>Why This Happens</Eyebrow>
-        <h2>Growth Creates Gaps Even Great Companies Don&rsquo;t See</h2>
+        <Eyebrow center>A New Standard for HVAC Call Handling</Eyebrow>
+        <h2>This Is Revenue Recovery</h2>
         <p>
-          This is not a reflection of your team&rsquo;s effort. Gaps like these appear naturally
-          as HVAC companies grow — more calls, more technicians, more moving pieces.
+          Second Line AI is a Revenue Recovery company — not a chatbot company, not a virtual
+          receptionist service, and not another piece of software to manage. Revenue Recovery
+          means protecting the opportunities your business is already generating: finding
+          exactly where they are being lost, and building a system that keeps it from
+          happening again.
         </p>
         <p>
-          The goal is not to critique how your office handles calls today. The goal is to
-          understand exactly where opportunities are being delayed, sent to voicemail, or lost —
-          and to build a system that protects them.
+          This is not a reflection of your team&rsquo;s effort. Gaps like these appear naturally
+          as HVAC companies grow — more calls, more technicians, more moving pieces. The goal is
+          to understand exactly where opportunities are being delayed, sent to voicemail, or
+          lost, and to build a system that protects them.
         </p>
       </div>
     </SectionWrap>
@@ -214,8 +252,8 @@ const notAFit = [
       <FrameworkTimeline steps={frameworkSteps} class="framework" />
     </SectionWrap>
 
-    <!-- ============ CHAPTER FOUR — Implementation ============ -->
-    <SectionWrap tone="ivory">
+    <!-- ============ Implementation — The Desk ============ -->
+    <SectionWrap tone="ivory" id="revenue-recovery-desk">
       <div class="two-col">
         <div>
           <Eyebrow>Only Now, the Product</Eyebrow>
@@ -283,17 +321,53 @@ const notAFit = [
       </div>
     </SectionWrap>
 
-    <!-- ============ Fit / Not a Fit — Confidence before Action ============ -->
-    <SectionWrap tone="ivory-soft">
+    <!-- ============ Founding Partner Opportunity ============ -->
+    <SectionWrap tone="ivory-soft" id="founding-partners">
       <div class="two-col">
         <div>
-          <h2>Second Line AI May Be a Strong Fit If&hellip;</h2>
+          <Eyebrow>An Early Invitation</Eyebrow>
+          <h2>Become a Founding Partner</h2>
+          <p>
+            Second Line AI is early in its work with Louisiana HVAC contractors. Founding
+            Partners are among the first companies to build a Revenue Recovery Partnership™
+            with us — helping shape how the Revenue Recovery Framework™ serves HVAC businesses
+            like yours.
+          </p>
+          <p>
+            Founding Partners receive a formal Founding Partner Certificate, priority access to
+            Partner Launch™, and a direct line to the team building the system around their
+            business.
+          </p>
+          <p class="muted-note">
+            Ask about Founding Partner status during your Complimentary Revenue Recovery
+            Assessment™.
+          </p>
+        </div>
+        <PhotoPlaceholder
+          ratio="4/5"
+          label="Founding Partner Certificate"
+          scene="A beautifully framed Founding Partner Certificate with an embossed seal, heavy textured paper, and elegant typography, photographed on a clean surface in natural light."
+        />
+      </div>
+    </SectionWrap>
+
+    <!-- ============ Trust and Expectations ============ -->
+    <SectionWrap tone="charcoal">
+      <Eyebrow>Setting Honest Expectations</Eyebrow>
+      <h2 class="max-720">Who This Is Built For</h2>
+      <p class="lede max-720">
+        We teach before we sell, and that includes being direct about fit. If Second Line AI is
+        not the right match for your company, we will say so.
+      </p>
+      <div class="two-col" style="margin-top: var(--space-5);">
+        <div>
+          <h3>Second Line AI May Be a Strong Fit If&hellip;</h3>
           <ul class="check-list">
             {strongFit.map((item) => <li>{item}</li>)}
           </ul>
         </div>
         <div>
-          <h2>Second Line AI May Not Be the Right Fit If&hellip;</h2>
+          <h3>Second Line AI May Not Be the Right Fit If&hellip;</h3>
           <ul class="x-list">
             {notAFit.map((item) => <li>{item}</li>)}
           </ul>
@@ -301,7 +375,14 @@ const notAFit = [
       </div>
     </SectionWrap>
 
-    <!-- ============ CHAPTER SIX — Action ============ -->
+    <!-- ============ Frequently Asked Questions ============ -->
+    <SectionWrap tone="ivory">
+      <Eyebrow>Straight Answers</Eyebrow>
+      <h2 class="max-720">Frequently Asked Questions</h2>
+      <FaqAccordion items={faqItems} class="framework" />
+    </SectionWrap>
+
+    <!-- ============ Final Call to Action ============ -->
     <SectionWrap tone="charcoal" center>
       <Eyebrow center>Begin With One Conversation</Eyebrow>
       <CtaBanner
@@ -376,6 +457,13 @@ const notAFit = [
     color: var(--color-emerald);
   }
 
+  .muted-note {
+    font-size: 0.8125rem;
+    color: var(--color-slate);
+    max-width: 46ch;
+    margin-bottom: 0;
+  }
+
   .framework {
     margin-top: var(--space-5);
     max-width: 760px;
@@ -406,17 +494,23 @@ const notAFit = [
     font-weight: 700;
   }
 
-  :global(.section--emerald) .check-list li::before {
-    color: var(--color-gold-light);
-  }
-
   .x-list li::before {
     content: '\2013';
     position: absolute;
     left: 0;
     top: 0;
+    /* Same light-background rule as check-list above. */
     color: var(--color-gold-deep);
     font-weight: 700;
+  }
+
+  /* gold-deep is ~2.5:1 on Emerald/Charcoal and fails AA there too —
+     dark sections need the lighter gold instead. */
+  :global(.section--emerald) .check-list li::before,
+  :global(.section--charcoal) .check-list li::before,
+  :global(.section--emerald) .x-list li::before,
+  :global(.section--charcoal) .x-list li::before {
+    color: var(--color-gold-light);
   }
 
   @media (max-width: 1023px) {

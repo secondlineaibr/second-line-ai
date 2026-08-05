@@ -1,0 +1,118 @@
+---
+/**
+ * Native <details>/<summary> accordion — no JS needed for the expand/
+ * collapse behavior itself, matching section 8's "avoid unnecessary
+ * client-side JavaScript." Reusable beyond the Homepage: the same
+ * component will back a future dedicated FAQ page.
+ */
+interface Item {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: Item[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<div class:list={['faq-accordion', className]}>
+  {
+    items.map((item) => (
+      <details class="faq-item">
+        <summary>
+          {item.question}
+          <span class="faq-icon" aria-hidden="true" />
+        </summary>
+        <p>{item.answer}</p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq-accordion {
+    max-width: 760px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-line-on-light);
+    padding-block: var(--space-3);
+  }
+
+  :global(.section--emerald) .faq-item,
+  :global(.section--charcoal) .faq-item {
+    border-bottom-color: var(--color-line-on-dark);
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.125rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: var(--color-gold-deep);
+    transform: translate(-50%, -50%);
+    transition: transform var(--duration-base) var(--ease-standard);
+  }
+
+  :global(.section--emerald) .faq-icon::before,
+  :global(.section--emerald) .faq-icon::after,
+  :global(.section--charcoal) .faq-icon::before,
+  :global(.section--charcoal) .faq-icon::after {
+    background: var(--color-gold-light);
+  }
+
+  .faq-icon::before {
+    width: 14px;
+    height: 2px;
+  }
+
+  .faq-icon::after {
+    width: 2px;
+    height: 14px;
+  }
+
+  .faq-item[open] .faq-icon::after {
+    transform: translate(-50%, -50%) rotate(90deg) scaleY(0);
+  }
+
+  .faq-item p {
+    margin-top: var(--space-2);
+    margin-bottom: 0;
+    max-width: 65ch;
+    opacity: 0.9;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-icon::before,
+    .faq-icon::after {
+      transition: none;
+    }
+  }
+</style>

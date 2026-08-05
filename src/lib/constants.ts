@@ -41,18 +41,32 @@ export const CONTACT = {
 } as const;
 
 /**
- * Only the Homepage has been rebuilt so far. Every other nav destination
- * still points at its legacy (public/*.html) page and keeps its legacy
- * label — pointing a new Magnolia-branded label at an unrebuilt, old-styled
- * page would be misleading. These get replaced page-by-page as each one is
- * rebuilt in a later phase.
+ * Approved nav IA. "How It Works" and "About" point at their legacy
+ * (public/*.html) pages, unchanged, until those pages are rebuilt in a
+ * later phase — pointing a new Magnolia-branded label at an unrebuilt,
+ * old-styled page would be misleading, but these two labels match their
+ * legacy destinations closely enough to be honest as-is. "Revenue Recovery
+ * Desk" and "Founding Partners" have no legacy page at all — they anchor
+ * to the matching Homepage section (`/#id`) until each gets its own
+ * dedicated page.
  */
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'How It Works', href: '/how-it-works.html' },
-  { label: 'Meet Marie', href: '/meet-marie.html' },
-  { label: 'Revenue Recovery Audit', href: '/revenue-recovery-audit.html' },
+  { label: 'Revenue Recovery Desk', href: '/#revenue-recovery-desk' },
+  { label: 'Founding Partners', href: '/#founding-partners' },
   { label: 'About', href: '/about.html' },
+] as const;
+
+export const NAV_CTA_LABEL = 'Get Started';
+
+/**
+ * The footer carries a fuller link set than the trimmed top nav — Contact
+ * and the legacy FAQ page still exist and need at least one working link
+ * pointing at them somewhere on the site.
+ */
+export const FOOTER_LINKS = [
+  ...NAV_LINKS,
   { label: 'FAQ', href: '/faq.html' },
   { label: 'Contact', href: '/contact.html' },
 ] as const;

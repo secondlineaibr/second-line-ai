@@ -1,5 +1,5 @@
 ---
-import { NAV_LINKS, CONTACT, BOOKING_URL } from '@lib/constants';
+import { NAV_LINKS, NAV_CTA_LABEL, BOOKING_URL } from '@lib/constants';
 import Button from '@components/Button.astro';
 
 const currentPath = Astro.url.pathname;
@@ -26,11 +26,8 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="nav-cta">
-      <a class="phone-link" href={CONTACT.phoneHref}>
-        Call: {CONTACT.phoneDisplay}
-      </a>
       <Button href={BOOKING_URL} variant="primary" class="nav-btn" external>
-        Book Your Assessment
+        {NAV_CTA_LABEL}
       </Button>
     </div>
 
@@ -58,9 +55,8 @@ const currentPath = Astro.url.pathname;
         ))
       }
     </nav>
-    <a class="mobile-phone" href={CONTACT.phoneHref}>Call: {CONTACT.phoneDisplay}</a>
     <Button href={BOOKING_URL} variant="primary" size="large" class="mobile-cta" external>
-      Book Your Assessment
+      {NAV_CTA_LABEL}
     </Button>
   </div>
 </header>
@@ -131,18 +127,6 @@ const currentPath = Astro.url.pathname;
     flex-shrink: 0;
   }
 
-  .phone-link {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-ivory-dim);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .phone-link:hover {
-    color: var(--color-gold-light);
-  }
-
   :global(.nav-btn) {
     padding: 11px 22px;
     font-size: 0.8125rem;
@@ -185,12 +169,6 @@ const currentPath = Astro.url.pathname;
     text-decoration: none;
     font-size: 1rem;
     border-bottom: 1px solid var(--color-line-on-dark);
-  }
-
-  .mobile-phone {
-    margin-top: 14px;
-    font-weight: 600;
-    color: var(--color-ivory);
   }
 
   :global(.mobile-cta) {
