@@ -118,7 +118,14 @@ const { steps, class: className } = Astro.props;
   if (!prefersReducedMotion && 'IntersectionObserver' in window) {
     timelines.forEach((timeline) => {
       timeline.classList.add('js-reveal');
-      const steps = timeline.querySelectorAll('[data-timeline-step]');
+      const steps = Array.from(
+        timeline.querySelectorAll<HTMLElement>('[data-timeline-step]')
+      );
+
+      const revealAll = () => {
+        steps.forEach((step) => step.classList.add('is-visible'));
+        observer.disconnect();
+      };
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -133,6 +140,13 @@ const { steps, class: className } = Astro.props;
       );
 
       steps.forEach((step) => observer.observe(step));
+
+      // Safety net: anything that doesn't literally scroll the page
+      // (crawlers, some accessibility/testing tooling, a very fast
+      // scroll past the threshold) must still see this content — it's
+      // real page copy, not decoration. Force it visible shortly after
+      // load if scrolling hasn't revealed it yet.
+      window.setTimeout(revealAll, 1500);
     });
   }
 </script>

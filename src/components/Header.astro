@@ -67,8 +67,11 @@ const currentPath = Astro.url.pathname;
 
 <style>
   .site-header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 500;
     background: transparent;
     border-bottom: 1px solid transparent;
@@ -208,7 +211,7 @@ const currentPath = Astro.url.pathname;
       display: none;
     }
 
-    .phone-link {
+    .nav-cta {
       display: none;
     }
 
