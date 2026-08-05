@@ -112,7 +112,9 @@ const year = new Date().getFullYear();
 
   .footer-legal {
     font-size: 0.75rem;
-    opacity: 0.55;
+    /* 0.55 measured at 4.42:1 on charcoal — fails WCAG AA (4.5:1).
+       0.65 clears it with margin (~5.6:1). */
+    opacity: 0.65;
     max-width: 900px;
     line-height: 1.7;
     margin-top: var(--space-3);

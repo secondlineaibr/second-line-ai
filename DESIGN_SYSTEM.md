@@ -47,11 +47,24 @@ black.
 
 **Contrast check:** Ivory (`#F6F1E3`) on Emerald (`#0F3D2C`) ≈ 9.8:1. Ivory on
 Charcoal (`#262922`) ≈ 11.4:1. Obsidian (`#14150F`) on Ivory ≈ 16.9:1. Gold
-(`#B48A4C`) on Ivory ≈ 2.9:1 — **fails AA for text**, so Gold is treated as an
-accent/decorative color only (dividers, icons, eyebrow labels paired with
-sufficient size/weight or the lighter `--color-gold-light` on dark surfaces),
-never as body copy color on a light background. This constraint carries
-into the Accessibility section below.
+(`#B48A4C`) on Ivory ≈ 2.8:1 — **fails AA for text** (confirmed by a
+Lighthouse accessibility audit against the built Homepage, which caught this
+exact failure on the Eyebrow component and check-list markers). The rule in
+practice:
+
+- On **light** sections (Ivory / Ivory-soft): any gold *text* — Eyebrow
+  labels, check-list markers — uses `--color-gold-deep` (`#7E5E32`, ≈5.3:1
+  on Ivory), never plain `--color-gold`. Plain Gold stays fine for
+  non-text decoration only (the Eyebrow's leading rule line).
+- On **dark** sections (Emerald / Charcoal): plain `--color-gold` already
+  clears AA on Charcoal (≈4.7:1, used in the footer headings) and
+  `--color-gold-light` is used wherever a bit more headroom is wanted
+  (≈6.3–7.7:1) — both are fine as-is.
+- `--color-gold-deep` fails badly on dark backgrounds (≈2.5:1 on Charcoal)
+  — it is a light-background-only token, not a universally "safer" gold.
+
+Get this backwards in a future component and it'll pass a casual look but
+fail the same Lighthouse audit that caught it here.
 
 ---
 

@@ -400,7 +400,9 @@ const notAFit = [
     position: absolute;
     left: 0;
     top: 0;
-    color: var(--color-gold);
+    /* gold-deep, not gold: plain gold is ~2.8:1 on light backgrounds
+       and fails WCAG AA text contrast (see Eyebrow.astro). */
+    color: var(--color-gold-deep);
     font-weight: 700;
   }
 

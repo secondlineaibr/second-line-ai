@@ -21,7 +21,10 @@ const { center = false, class: className } = Astro.props;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--color-gold);
+    /* --color-gold is ~2.8:1 on ivory — fails WCAG AA for text (needs
+       4.5:1 at this size). gold-deep clears 5.2:1+ on every light
+       section while still reading as the same accent family. */
+    color: var(--color-gold-deep);
     margin-bottom: var(--space-3);
   }
 
@@ -34,7 +37,7 @@ const { center = false, class: className } = Astro.props;
     content: '';
     width: 26px;
     height: 1px;
-    background: var(--color-gold);
+    background: var(--color-gold-deep);
     display: inline-block;
     flex-shrink: 0;
   }
