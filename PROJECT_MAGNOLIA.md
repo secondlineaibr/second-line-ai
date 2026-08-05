@@ -363,3 +363,359 @@ Everything.
 ---
 
 END OF SECTION 2
+
+---
+
+# SECTION 3
+
+# Creative Direction & Design Language
+
+## Design Objective
+
+The Second Line AI website should become the digital headquarters of the Revenue Recovery category.
+
+It should not resemble an AI startup.
+
+It should not resemble a SaaS company.
+
+It should not resemble a marketing agency.
+
+Instead, it should communicate the confidence, craftsmanship, and professionalism of a premium consulting firm built specifically for Louisiana HVAC contractors.
+
+The website should immediately feel trustworthy.
+
+Technology should disappear into the background.
+
+The customer experience should become the hero.
+
+---
+
+# Design North Star
+
+Visitors should leave believing:
+
+"These people understand my business better than anyone else I've spoken with."
+
+Everything else is secondary.
+
+---
+
+# Brand Personality
+
+Second Line AI should feel:
+
+Calm.
+
+Refined.
+
+Professional.
+
+Welcoming.
+
+Quietly confident.
+
+Established.
+
+Premium.
+
+Southern.
+
+Timeless.
+
+---
+
+Never feel:
+
+Flashy.
+
+Cold.
+
+Corporate.
+
+Overly futuristic.
+
+Artificial.
+
+Busy.
+
+Complicated.
+
+Salesy.
+
+---
+
+# Visual Inspiration
+
+The design language should draw inspiration from companies such as:
+
+Apple
+
+Four Seasons
+
+Aman Resorts
+
+Ritz-Carlton
+
+McKinsey & Company
+
+ServiceTitan
+
+Brunello Cucinelli
+
+Restoration Hardware
+
+The objective is to combine luxury hospitality with executive consulting.
+
+---
+
+# Design Philosophy
+
+Every page should feel like reading a beautifully designed magazine.
+
+Large photography.
+
+Elegant typography.
+
+Generous spacing.
+
+Minimal distractions.
+
+One clear message per section.
+
+Nothing competes for attention.
+
+Every scroll should feel intentional.
+
+---
+
+# White Space Philosophy
+
+White space is not empty space.
+
+White space creates confidence.
+
+Never attempt to fill every area of the screen.
+
+Luxury brands communicate through restraint.
+
+Every section should breathe.
+
+---
+
+# Layout Principles
+
+Use a centered content container.
+
+Maximum width approximately 1280px.
+
+Reading width should remain comfortable.
+
+Large margins.
+
+Large spacing between sections.
+
+No clutter.
+
+---
+
+# Section Spacing
+
+Desktop
+
+160px
+
+Tablet
+
+120px
+
+Mobile
+
+80px
+
+Every section should feel visually independent.
+
+---
+
+# Visual Rhythm
+
+Alternate light and dark sections naturally.
+
+Warm Ivory.
+
+Deep Emerald.
+
+Warm Ivory.
+
+Soft Charcoal.
+
+Warm Ivory.
+
+Never allow the page to feel visually repetitive.
+
+---
+
+# Card System
+
+Cards should feel like premium presentation materials.
+
+Rounded corners.
+
+Thin borders.
+
+Subtle shadows.
+
+Generous padding.
+
+No excessive gradients.
+
+No glowing effects.
+
+Minimal content.
+
+Every card should communicate one idea.
+
+---
+
+# Button Philosophy
+
+Buttons should feel substantial.
+
+Never tiny.
+
+Never flashy.
+
+Primary buttons use Deep Emerald with Warm Ivory typography.
+
+Secondary buttons use transparent backgrounds with Deep Emerald borders.
+
+Hover states should feel smooth and restrained.
+
+---
+
+# Motion Philosophy
+
+Motion should support understanding.
+
+Never entertainment.
+
+Use:
+
+Fade.
+
+Opacity.
+
+Subtle slide.
+
+Scale.
+
+Very restrained parallax.
+
+Never use:
+
+Bounce.
+
+Spin.
+
+Flash.
+
+Neon effects.
+
+Aggressive transitions.
+
+Motion should feel luxurious.
+
+---
+
+# Navigation
+
+Navigation should feel invisible.
+
+Minimal.
+
+Elegant.
+
+Transparent over the hero.
+
+Solid after scrolling.
+
+Visitors should never feel distracted by navigation.
+
+---
+
+# Scroll Experience
+
+Scrolling should feel like turning pages in a beautifully designed book.
+
+Each section introduces one new idea.
+
+Nothing appears rushed.
+
+Nothing feels overwhelming.
+
+---
+
+# Footer Philosophy
+
+Large.
+
+Elegant.
+
+Quiet.
+
+Professional.
+
+The footer should reinforce confidence rather than simply provide links.
+
+---
+
+# Design Rule
+
+If there is ever a choice between:
+
+Looking impressive
+
+or
+
+Increasing trust
+
+Always choose trust.
+
+---
+
+# Final Design Test
+
+When viewing the completed website, visitors should describe it using words such as:
+
+Professional.
+
+Trustworthy.
+
+Refined.
+
+Elegant.
+
+Organized.
+
+Premium.
+
+Calm.
+
+Helpful.
+
+If they instead describe it as:
+
+Cool.
+
+Futuristic.
+
+High-tech.
+
+Flashy.
+
+Modern.
+
+Then the design has failed.
+
+---
+
+END OF SECTION 3
