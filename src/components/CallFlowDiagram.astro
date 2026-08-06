@@ -1,0 +1,119 @@
+---
+/**
+ * Elegant, minimal flow diagram showing how one opportunity moves through
+ * the Revenue Recovery Desk. Deliberately laid out horizontally with arrow
+ * connectors (desktop) rather than the vertical numbered timeline used for
+ * the Framework section — the two are visually distinct so the page
+ * doesn't repeat the same pattern twice.
+ */
+interface Props {
+  steps: string[];
+  class?: string;
+}
+
+const { steps, class: className } = Astro.props;
+---
+
+<ol class:list={['flow', className]}>
+  {
+    steps.map((step, i) => (
+      <>
+        <li class="flow-step">
+          <span class="flow-step__index">{String(i + 1).padStart(2, '0')}</span>
+          <span class="flow-step__label">{step}</span>
+        </li>
+        {i < steps.length - 1 && (
+          <li class="flow-arrow" aria-hidden="true">
+            <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
+              <path
+                d="M1 6h16.5M12 1l6 5-6 5"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </li>
+        )}
+      </>
+    ))
+  }
+</ol>
+
+<style>
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--color-ivory-soft);
+    border: 1px solid var(--color-line-on-light);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    min-width: 128px;
+    flex: 1 1 128px;
+  }
+
+  .flow-step__index {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    color: var(--color-gold-deep);
+    letter-spacing: 0.08em;
+  }
+
+  .flow-step__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-obsidian);
+  }
+
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gold-deep);
+    flex: 0 0 auto;
+  }
+
+  :global(.section--emerald) .flow-step,
+  :global(.section--charcoal) .flow-step {
+    background: rgba(246, 241, 227, 0.05);
+    border-color: var(--color-line-on-dark);
+  }
+
+  :global(.section--emerald) .flow-step__index,
+  :global(.section--charcoal) .flow-step__index,
+  :global(.section--emerald) .flow-arrow,
+  :global(.section--charcoal) .flow-arrow {
+    color: var(--color-gold-light);
+  }
+
+  :global(.section--emerald) .flow-step__label,
+  :global(.section--charcoal) .flow-step__label {
+    color: var(--color-ivory);
+  }
+
+  @media (max-width: 900px) {
+    .flow {
+      flex-direction: column;
+    }
+
+    .flow-step {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .flow-arrow {
+      transform: rotate(90deg);
+      align-self: flex-start;
+      margin-left: var(--space-3);
+    }
+  }
+</style>

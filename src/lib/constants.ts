@@ -12,25 +12,36 @@ export const BRAND_PROMISE =
   'Recover More of the Revenue You’re Already Paying to Generate.';
 export const INTERNAL_MOTTO = 'Protect Every Opportunity.';
 
+/**
+ * Trademark restraint (per the 2026-08-05 refinement pass): ™ is reserved
+ * for concepts genuinely proprietary to the service — the Desk, the
+ * Framework, the Score. Everything else is a plain descriptive name, no
+ * symbol, even where earlier copy trademarked it.
+ */
 export const PRODUCT = {
-  philosophy: 'The Second Line Standard™',
+  philosophy: 'The Second Line Standard',
   methodology: 'The Revenue Recovery Framework™',
-  evaluation: 'Complimentary Revenue Recovery Assessment™',
+  evaluation: '17-Minute Revenue Recovery Audit',
   measurement: 'Revenue Recovery Score™',
   flagship: 'The HVAC Revenue Recovery Desk™',
-  relationship: 'Revenue Recovery Partnership™',
-  implementation: 'Partner Launch™',
-  reporting: 'Weekly Revenue Recovery Reports™',
+  relationship: 'Revenue Recovery Partnership',
+  implementation: 'Partner Launch',
+  reporting: 'Weekly Revenue Recovery Reports',
 } as const;
 
 /**
- * Cal.com booking link is a preserved external asset — the URL slug is
- * legacy ("17-minute-revenue-audit") but on-page copy always calls this the
- * Complimentary Revenue Recovery Assessment™. Changing the slug would
- * require reconfiguring Cal.com and is out of scope for the rebuild.
+ * Cal.com booking link is a preserved external asset — the URL slug
+ * ("17-minute-revenue-audit") now matches the on-page CTA language too:
+ * "Book My 17-Minute Revenue Recovery Audit."
  */
 export const BOOKING_URL =
   'https://cal.com/secondline.ai/17-minute-revenue-audit';
+
+export const CTA = {
+  bookFull: 'Book My 17-Minute Revenue Recovery Audit',
+  bookShort: 'Book 17-Minute Audit',
+  callMarie: 'Call Marie',
+} as const;
 
 export const CONTACT = {
   phoneDisplay: '225-325-2700',
@@ -58,7 +69,7 @@ export const NAV_LINKS = [
   { label: 'About', href: '/about.html' },
 ] as const;
 
-export const NAV_CTA_LABEL = 'Get Started';
+export const NAV_CTA_LABEL = CTA.bookShort;
 
 /**
  * The footer carries a fuller link set than the trimmed top nav — Contact

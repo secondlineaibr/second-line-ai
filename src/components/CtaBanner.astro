@@ -1,7 +1,7 @@
 ---
 import Button from '@components/Button.astro';
 import Eyebrow from '@components/Eyebrow.astro';
-import { BOOKING_URL, CONTACT } from '@lib/constants';
+import { BOOKING_URL, CONTACT, CTA } from '@lib/constants';
 
 interface Props {
   eyebrow?: string;
@@ -16,7 +16,7 @@ const {
   eyebrow,
   heading,
   body,
-  primaryLabel = 'Book Your Complimentary Revenue Recovery Assessment™',
+  primaryLabel = CTA.bookFull,
   showPhone = false,
   class: className,
 } = Astro.props;
@@ -33,7 +33,7 @@ const {
     {
       showPhone && (
         <Button href={CONTACT.phoneHref} variant="secondary" size="large">
-          Call {CONTACT.phoneDisplay}
+          {CTA.callMarie} — {CONTACT.phoneDisplay}
         </Button>
       )
     }

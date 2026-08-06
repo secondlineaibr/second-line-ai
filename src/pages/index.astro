@@ -11,14 +11,17 @@ import CtaBanner from '@components/CtaBanner.astro';
 import PhotoPlaceholder from '@components/PhotoPlaceholder.astro';
 import FrameworkTimeline from '@components/FrameworkTimeline.astro';
 import FaqAccordion from '@components/FaqAccordion.astro';
-import { CONTACT, BOOKING_URL, SITE_URL, SITE_NAME } from '@lib/constants';
+import CallDemoCard from '@components/CallDemoCard.astro';
+import CallFlowDiagram from '@components/CallFlowDiagram.astro';
+import RevenueCalculator from '@components/RevenueCalculator.astro';
+import { CONTACT, BOOKING_URL, SITE_URL, SITE_NAME, CTA } from '@lib/constants';
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: SITE_NAME,
   description:
-    'Second Line AI helps Louisiana HVAC companies recover more of the revenue they are already paying to generate through The HVAC Revenue Recovery Desk™, a fully managed Revenue Recovery Partnership™.',
+    'Second Line AI helps Louisiana HVAC companies recover more of the revenue they are already paying to generate through The HVAC Revenue Recovery Desk™, a fully managed Revenue Recovery Partnership.',
   url: SITE_URL,
   telephone: '+12253252700',
   email: CONTACT.email,
@@ -50,8 +53,18 @@ const frameworkSteps = [
   {
     title: 'Improve',
     description:
-      'We track your Revenue Recovery Score™ and deliver Weekly Revenue Recovery Reports™, refining the system as your operation changes.',
+      'We track your Revenue Recovery Score™ and deliver Weekly Revenue Recovery Reports, refining the system as your operation changes.',
   },
+];
+
+const flowSteps = [
+  'Incoming Call',
+  'Answer',
+  'Identify',
+  'Capture Need',
+  'Book / Escalate',
+  'Update System',
+  'Report',
 ];
 
 const useCases = [
@@ -116,29 +129,29 @@ const faqItems = [
   {
     question: 'Does Second Line AI guarantee more revenue?',
     answer:
-      'No. We do not guarantee revenue, sales, appointment volume, or specific business outcomes. Results depend on call volume, customer demand, staff follow-up, pricing, service quality, and your sales process — a Revenue Recovery Partnership™ improves the system, not the market you operate in.',
+      'No. We do not guarantee revenue, sales, appointment volume, or specific business outcomes. Results depend on call volume, customer demand, staff follow-up, pricing, service quality, and your sales process — a Revenue Recovery Partnership improves the system, not the market you operate in.',
   },
   {
-    question: 'What is included in the Complimentary Revenue Recovery Assessment™?',
+    question: 'What is included in the 17-Minute Revenue Recovery Audit?',
     answer:
-      'A focused, seventeen-minute review of your current call-handling process, where revenue may be leaking, and whether a Revenue Recovery Partnership™ makes sense for your company. There is no cost and no obligation.',
+      'A focused, seventeen-minute review of your current call-handling process, where revenue may be leaking, and whether a Revenue Recovery Partnership makes sense for your company. There is no cost and no obligation.',
   },
   {
     question: 'How much does this cost?',
     answer:
-      'Pricing depends on the scope of your Revenue Recovery Desk™, call volume, integrations, and ongoing management needs. We discuss pricing after your Complimentary Revenue Recovery Assessment™, once we understand your operation.',
+      'Pricing depends on the scope of your Revenue Recovery Desk™, call volume, integrations, and ongoing management needs. We discuss pricing after your 17-Minute Revenue Recovery Audit, once we understand your operation.',
   },
   {
     question: 'How do I get started?',
     answer:
-      'Book your Complimentary Revenue Recovery Assessment™ using the button on this page, or email bookmore@secondlineai.com.',
+      'Book your 17-Minute Revenue Recovery Audit using the button on this page, or email bookmore@secondlineai.com.',
   },
 ];
 ---
 
 <Layout
   title="Second Line AI | Revenue Recovery for Louisiana HVAC Contractors"
-  description="Second Line AI helps Louisiana HVAC companies recover more of the revenue they are already paying to generate through The HVAC Revenue Recovery Desk™ — a fully managed Revenue Recovery Partnership™."
+  description="Second Line AI helps Louisiana HVAC companies recover more of the revenue they are already paying to generate through The HVAC Revenue Recovery Desk™ — a fully managed Revenue Recovery Partnership."
 >
   <script
     is:inline
@@ -153,18 +166,18 @@ const faqItems = [
       <div class="hero-grid">
         <div class="hero-copy">
           <Eyebrow>Louisiana HVAC Revenue Recovery</Eyebrow>
-          <h1>Your Business Doesn&rsquo;t Need More Leads. It Needs Better Revenue Recovery.</h1>
+          <h1>You&rsquo;re Already Paying for the Call. Make Sure Someone Answers It.</h1>
           <p class="hero-lede">
-            Second Line AI helps Louisiana HVAC companies protect the calls, opportunities, and
-            revenue they are already paying to generate — through a fully managed Revenue
-            Recovery Partnership™ built around your operation.
+            Second Line AI helps Louisiana HVAC companies capture missed, overflow, and
+            after-hours opportunities through a fully managed Revenue Recovery Desk™ built
+            around their operation.
           </p>
           <div class="hero-actions">
             <Button href={BOOKING_URL} variant="primary" size="large" external>
-              Book Your Complimentary Revenue Recovery Assessment™
+              {CTA.bookFull}
             </Button>
-            <Button href="/how-it-works.html" variant="secondary" size="large">
-              See How It Works
+            <Button href={CONTACT.phoneHref} variant="secondary" size="large">
+              {CTA.callMarie} — {CONTACT.phoneDisplay}
             </Button>
           </div>
           <p class="hero-note">
@@ -181,20 +194,17 @@ const faqItems = [
       </div>
     </SectionWrap>
 
-    <!-- ============ CHAPTER ONE — Recognition ============ -->
+    <!-- ============ Recognition ============ -->
     <SectionWrap tone="ivory">
       <div class="two-col">
         <div>
           <Eyebrow>The Reality Inside a Growing HVAC Company</Eyebrow>
           <h2>Every Missed Call Is Revenue You&rsquo;ve Already Paid to Generate</h2>
           <p>
-            When the phones start ringing, your team is already working. Dispatchers are
-            coordinating technicians. Office staff are helping other customers. Technicians are
-            on job sites.
-          </p>
-          <p>
-            Meanwhile, a homeowner is calling because their air conditioner stopped cooling,
-            their system is leaking, or they are ready to schedule service.
+            Your team is already stretched — dispatchers coordinating technicians, office staff
+            helping other customers, technicians on job sites. Meanwhile, a homeowner is calling
+            because their air conditioner stopped cooling, or they&rsquo;re ready to schedule
+            service.
           </p>
           <p>
             When no one answers, many callers do not wait. They call the next company.
@@ -220,34 +230,43 @@ const faqItems = [
         <p>
           Second Line AI is a Revenue Recovery company — not a chatbot company, not a virtual
           receptionist service, and not another piece of software to manage. Revenue Recovery
-          means protecting the opportunities your business is already generating: finding
-          exactly where they are being lost, and building a system that keeps it from
-          happening again.
+          means finding exactly where your business is losing opportunities it already paid to
+          generate, and building a system that protects them.
         </p>
         <p>
-          This is not a reflection of your team&rsquo;s effort. Gaps like these appear naturally
-          as HVAC companies grow — more calls, more technicians, more moving pieces. The goal is
-          to understand exactly where opportunities are being delayed, sent to voicemail, or
-          lost, and to build a system that protects them.
+          These gaps aren&rsquo;t a reflection of your team&rsquo;s effort — they appear
+          naturally as HVAC companies grow. Our job is to find them and close them.
         </p>
       </div>
     </SectionWrap>
 
-    <!-- ============ SIGNATURE QUOTE — pivot into the Framework ============ -->
+    <!-- ============ SIGNATURE QUOTE ============ -->
     <SectionWrap tone="ivory-soft" tight center>
       <Quote>
         Recover More of the Revenue You&rsquo;re Already Paying to Generate.
       </Quote>
     </SectionWrap>
 
-    <!-- ============ CHAPTER THREE — A Better Way ============ -->
-    <SectionWrap tone="charcoal">
-      <Eyebrow>The Second Line Standard™</Eyebrow>
+    <!-- ============ Marie Live Demo ============ -->
+    <SectionWrap tone="charcoal" center>
+      <Eyebrow center>Experience It Yourself</Eyebrow>
+      <h2 class="max-620 mx-auto">Meet Marie. She&rsquo;s Answering Right Now.</h2>
+      <p class="lede max-620 mx-auto">
+        Marie is the AI-powered intake specialist working inside your Revenue Recovery Desk™ —
+        answering missed, overflow, and after-hours calls according to your company&rsquo;s
+        approved rules.
+      </p>
+      <CallDemoCard class="marie-card" />
+    </SectionWrap>
+
+    <!-- ============ The Revenue Recovery Framework ============ -->
+    <SectionWrap tone="emerald">
+      <Eyebrow>The Second Line Standard</Eyebrow>
       <h2 class="max-720">The Revenue Recovery Framework™</h2>
       <p class="lede max-720">
-        Before we introduce any product, we apply the same methodology to every partner: The
-        Revenue Recovery Framework™. It is how we find out exactly where your revenue is going —
-        and what protecting it should look like for your company.
+        Before we introduce any product, we apply the same methodology to every partner. It is
+        how we find out exactly where your revenue is going — and what protecting it should
+        look like for your company.
       </p>
       <FrameworkTimeline steps={frameworkSteps} class="framework" />
     </SectionWrap>
@@ -259,24 +278,21 @@ const faqItems = [
           <Eyebrow>Only Now, the Product</Eyebrow>
           <h2>The HVAC Revenue Recovery Desk™</h2>
           <p>
-            The HVAC Revenue Recovery Desk™ is a fully managed extension of your office — built
-            to answer when your team cannot, and to treat every caller with the same
-            professionalism your business is known for.
+            The HVAC Revenue Recovery Desk™ is a fully managed extension of your office, built
+            around your rules. Marie is one part of how it operates day to day — she is not the
+            product, and she does not work alone.
           </p>
-          <p>
-            Marie, our AI-powered intake specialist, is part of how the Desk operates day to
-            day. She is not the product. She is one tool your Revenue Recovery Desk™ uses to
-            make sure no opportunity goes unanswered.
-          </p>
-          <Button href={CONTACT.phoneHref} variant="secondary">
-            Hear Marie in Action — Call {CONTACT.phoneDisplay}
-          </Button>
         </div>
         <PhotoPlaceholder
           ratio="4/5"
           label="Revenue Recovery Desk™"
-          scene="A business owner reviewing Weekly Revenue Recovery Reports™ at a table with coffee and a notebook, natural morning light, calm environment."
+          scene="A business owner reviewing weekly revenue recovery reports at a table with coffee and a notebook, natural morning light, calm environment."
         />
+      </div>
+
+      <div class="flow-wrap">
+        <h3 class="flow-heading">How One Opportunity Moves Through the Desk</h3>
+        <CallFlowDiagram steps={flowSteps} />
       </div>
 
       <ul class="feature-grid">
@@ -291,56 +307,62 @@ const faqItems = [
       </ul>
     </SectionWrap>
 
-    <!-- ============ CHAPTER FIVE — Partnership ============ -->
+    <!-- ============ Partnership ============ -->
     <SectionWrap tone="emerald">
       <div class="two-col">
         <div>
           <Eyebrow>How We Work Together</Eyebrow>
-          <h2>A Revenue Recovery Partnership™ — Not a Software Purchase</h2>
+          <h2>A Revenue Recovery Partnership — Not a Software Purchase</h2>
           <p>
-            Every partnership begins with Partner Launch™: we configure your Revenue Recovery
+            Every partnership begins with Partner Launch: we configure your Revenue Recovery
             Desk™ around your company&rsquo;s real policies, services, and rules before a single
             call is answered.
           </p>
           <p>
-            From there, we stay involved. Weekly Revenue Recovery Reports™ keep you informed on
-            what is working, and your Revenue Recovery Score™ gives you a clear, ongoing measure
-            of how well opportunities are being protected.
-          </p>
-          <p>
-            This is not a system we hand you and walk away from. It is a Revenue Recovery
-            Partnership™ built on continuous improvement.
+            From there, we stay involved. Weekly Revenue Recovery Reports keep you informed, and
+            your Revenue Recovery Score™ gives you an ongoing measure of how well opportunities
+            are being protected. This is not a system we hand you and walk away from.
           </p>
         </div>
         <ul class="check-list">
-          <li>A dedicated Partner Launch™ implementation</li>
-          <li>Weekly Revenue Recovery Reports™</li>
+          <li>A dedicated Partner Launch implementation</li>
+          <li>Weekly Revenue Recovery Reports</li>
           <li>An evolving Revenue Recovery Score™</li>
           <li>A team that treats your business like our own</li>
         </ul>
       </div>
     </SectionWrap>
 
+    <!-- ============ Revenue-at-Risk Calculator ============ -->
+    <SectionWrap tone="ivory-soft" center>
+      <Eyebrow center>See Your Own Numbers</Eyebrow>
+      <h2 class="max-620 mx-auto">What Might Missed Calls Be Costing You?</h2>
+      <p class="lede max-620 mx-auto">
+        Enter your own numbers below. This is a simple estimate to help you think about the
+        question — not a prediction or a guarantee.
+      </p>
+      <RevenueCalculator class="calculator-wrap" />
+    </SectionWrap>
+
     <!-- ============ Founding Partner Opportunity ============ -->
-    <SectionWrap tone="ivory-soft" id="founding-partners">
+    <SectionWrap tone="charcoal" id="founding-partners">
       <div class="two-col">
         <div>
           <Eyebrow>An Early Invitation</Eyebrow>
           <h2>Become a Founding Partner</h2>
           <p>
             Second Line AI is early in its work with Louisiana HVAC contractors. Founding
-            Partners are among the first companies to build a Revenue Recovery Partnership™
-            with us — helping shape how the Revenue Recovery Framework™ serves HVAC businesses
-            like yours.
+            Partners get a high-touch Partner Launch, direct input into how the Revenue Recovery
+            Framework™ evolves for HVAC businesses, and a direct line to the team building the
+            system around their operation.
           </p>
           <p>
-            Founding Partners receive a formal Founding Partner Certificate, priority access to
-            Partner Launch™, and a direct line to the team building the system around their
-            business.
+            It&rsquo;s a genuine seat at the table while the system is still being shaped — not
+            just an early sign-up. Founding Partners also receive a Founding Partner Certificate
+            recognizing that role.
           </p>
           <p class="muted-note">
-            Ask about Founding Partner status during your Complimentary Revenue Recovery
-            Assessment™.
+            Ask about Founding Partner status during your 17-Minute Revenue Recovery Audit.
           </p>
         </div>
         <PhotoPlaceholder
@@ -352,7 +374,7 @@ const faqItems = [
     </SectionWrap>
 
     <!-- ============ Trust and Expectations ============ -->
-    <SectionWrap tone="charcoal">
+    <SectionWrap tone="ivory">
       <Eyebrow>Setting Honest Expectations</Eyebrow>
       <h2 class="max-720">Who This Is Built For</h2>
       <p class="lede max-720">
@@ -376,17 +398,17 @@ const faqItems = [
     </SectionWrap>
 
     <!-- ============ Frequently Asked Questions ============ -->
-    <SectionWrap tone="ivory">
+    <SectionWrap tone="emerald">
       <Eyebrow>Straight Answers</Eyebrow>
       <h2 class="max-720">Frequently Asked Questions</h2>
       <FaqAccordion items={faqItems} class="framework" />
     </SectionWrap>
 
     <!-- ============ Final Call to Action ============ -->
-    <SectionWrap tone="charcoal" center>
+    <SectionWrap tone="ivory-soft" center>
       <Eyebrow center>Begin With One Conversation</Eyebrow>
       <CtaBanner
-        heading="Book Your Complimentary Revenue Recovery Assessment™"
+        heading={CTA.bookFull}
         body="In seventeen minutes, we will review how your company currently handles calls and help you see exactly where revenue may be slipping through. There is no obligation, and if we are not the right fit, we will tell you."
         showPhone
       />
@@ -443,6 +465,10 @@ const faqItems = [
     max-width: 720px;
   }
 
+  .max-620 {
+    max-width: 620px;
+  }
+
   .mx-auto {
     margin-inline: auto;
   }
@@ -464,9 +490,34 @@ const faqItems = [
     margin-bottom: 0;
   }
 
+  :global(.section--emerald) .muted-note,
+  :global(.section--charcoal) .muted-note {
+    color: var(--color-ivory-dim);
+  }
+
+  .marie-card {
+    margin-top: var(--space-5);
+  }
+
   .framework {
     margin-top: var(--space-5);
     max-width: 760px;
+  }
+
+  .flow-wrap {
+    margin-top: var(--space-6);
+  }
+
+  .flow-heading {
+    font-size: 1rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-3);
+  }
+
+  :global(.calculator-wrap) {
+    margin-top: var(--space-5);
   }
 
   .feature-grid {

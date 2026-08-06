@@ -1,0 +1,254 @@
+---
+/**
+ * Interactive revenue-at-risk estimator. Vanilla JS, no framework —
+ * consistent with the rest of the site's near-zero client-JS footprint.
+ * Server-renders a real default estimate first so the numbers are correct
+ * and readable even before the script runs; the script then recalculates
+ * live on input. Every output is explicitly labeled an estimate — nothing
+ * here claims to be an industry statistic or a guarantee.
+ */
+const DEFAULTS = {
+  missedCalls: 5,
+  jobValue: 450,
+  closeRate: 40,
+};
+
+const WEEKS_PER_MONTH = 4.33;
+
+function estimate(missedCalls: number, jobValue: number, closeRate: number) {
+  const monthly = missedCalls * WEEKS_PER_MONTH * (closeRate / 100) * jobValue;
+  return { monthly, annual: monthly * 12 };
+}
+
+const currency = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 0,
+});
+
+const initial = estimate(DEFAULTS.missedCalls, DEFAULTS.jobValue, DEFAULTS.closeRate);
+---
+
+<div class="calculator" data-calculator>
+  <div class="calculator__inputs">
+    <div class="calculator__field">
+      <label for="calc-missed-calls">Missed calls per week</label>
+      <input
+        type="number"
+        id="calc-missed-calls"
+        data-input="missedCalls"
+        min="0"
+        max="200"
+        step="1"
+        value={DEFAULTS.missedCalls}
+      />
+    </div>
+    <div class="calculator__field">
+      <label for="calc-job-value">Average booked job value</label>
+      <div class="calculator__prefixed">
+        <span aria-hidden="true">$</span>
+        <input
+          type="number"
+          id="calc-job-value"
+          data-input="jobValue"
+          min="0"
+          max="50000"
+          step="25"
+          value={DEFAULTS.jobValue}
+        />
+      </div>
+    </div>
+    <div class="calculator__field">
+      <label for="calc-close-rate">Close rate</label>
+      <div class="calculator__prefixed">
+        <input
+          type="number"
+          id="calc-close-rate"
+          data-input="closeRate"
+          min="0"
+          max="100"
+          step="1"
+          value={DEFAULTS.closeRate}
+        />
+        <span aria-hidden="true">%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="calculator__outputs" aria-live="polite">
+    <div class="calculator__stat">
+      <span class="calculator__stat-label">Estimated Monthly Revenue at Risk</span>
+      <span class="calculator__stat-value" data-output="monthly">
+        {currency.format(initial.monthly)}
+      </span>
+    </div>
+    <div class="calculator__stat">
+      <span class="calculator__stat-label">Estimated Annual Revenue at Risk</span>
+      <span class="calculator__stat-value" data-output="annual">
+        {currency.format(initial.annual)}
+      </span>
+    </div>
+  </div>
+
+  <p class="calculator__disclaimer">
+    These are estimates based on the numbers you enter — not a guarantee, an industry benchmark,
+    or a forecast of your results. Adjust the fields above to match your own operation.
+  </p>
+</div>
+
+<style>
+  .calculator {
+    background: var(--color-ivory-soft);
+    border: 1px solid var(--color-line-on-light);
+    border-radius: var(--radius-card);
+    padding: var(--space-5) var(--space-4);
+    max-width: 780px;
+    margin-inline: auto;
+  }
+
+  .calculator__inputs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+
+  .calculator__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+  }
+
+  .calculator__field label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-obsidian);
+  }
+
+  .calculator__field input {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 12px 14px;
+    border: 1px solid var(--color-line-on-light);
+    border-radius: var(--radius-sm);
+    background: var(--color-ivory);
+    color: var(--color-obsidian);
+    width: 100%;
+  }
+
+  .calculator__field input:focus-visible {
+    outline: 2px solid var(--color-gold-deep);
+    outline-offset: 1px;
+  }
+
+  .calculator__prefixed {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--color-line-on-light);
+    border-radius: var(--radius-sm);
+    background: var(--color-ivory);
+    padding-inline: 14px;
+  }
+
+  .calculator__prefixed span {
+    color: var(--color-slate);
+    font-weight: 600;
+  }
+
+  .calculator__prefixed input {
+    border: none;
+    background: transparent;
+    padding-block: 12px;
+    padding-inline: 0;
+  }
+
+  .calculator__prefixed input:focus-visible {
+    outline: none;
+  }
+
+  .calculator__outputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-line-on-light);
+    margin-bottom: var(--space-3);
+  }
+
+  .calculator__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .calculator__stat-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-gold-deep);
+  }
+
+  .calculator__stat-value {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 1vw + 1.25rem, 2rem);
+    color: var(--color-emerald);
+  }
+
+  .calculator__disclaimer {
+    font-size: 0.75rem;
+    color: var(--color-slate);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .calculator__inputs,
+    .calculator__outputs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const WEEKS_PER_MONTH = 4.33;
+  const currency = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
+
+  function clamp(value: number, min: number, max: number) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-calculator]').forEach((calc) => {
+    const inputs = {
+      missedCalls: calc.querySelector<HTMLInputElement>('[data-input="missedCalls"]'),
+      jobValue: calc.querySelector<HTMLInputElement>('[data-input="jobValue"]'),
+      closeRate: calc.querySelector<HTMLInputElement>('[data-input="closeRate"]'),
+    };
+    const outputs = {
+      monthly: calc.querySelector<HTMLElement>('[data-output="monthly"]'),
+      annual: calc.querySelector<HTMLElement>('[data-output="annual"]'),
+    };
+
+    function recalculate() {
+      const missedCalls = clamp(Number(inputs.missedCalls?.value) || 0, 0, 200);
+      const jobValue = clamp(Number(inputs.jobValue?.value) || 0, 0, 50000);
+      const closeRate = clamp(Number(inputs.closeRate?.value) || 0, 0, 100);
+
+      const monthly = missedCalls * WEEKS_PER_MONTH * (closeRate / 100) * jobValue;
+      const annual = monthly * 12;
+
+      if (outputs.monthly) outputs.monthly.textContent = currency.format(monthly);
+      if (outputs.annual) outputs.annual.textContent = currency.format(annual);
+    }
+
+    Object.values(inputs).forEach((input) => {
+      input?.addEventListener('input', recalculate);
+    });
+  });
+</script>
