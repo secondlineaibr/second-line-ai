@@ -1,0 +1,248 @@
+---
+/**
+ * Interactive revenue-at-risk estimator. Vanilla JS, no framework —
+ * consistent with the rest of the site's near-zero client-JS footprint.
+ * Server-renders a real default estimate first so the numbers are correct
+ * and readable even before the script runs; the script then recalculates
+ * live on input. Every output is explicitly labeled an estimate — nothing
+ * here claims to be an industry statistic or a guarantee.
+ *
+ * Styling ported from Blink exactly: dark (Emerald-section) card, an
+ * underlined number field paired with a range slider per input, large
+ * gold serif output numbers. Number input and slider stay in sync in
+ * both directions, matching Blink's dual-control pattern.
+ */
+const FIELDS = [
+  { key: 'missedCalls', label: 'Missed calls / week', suffix: '', min: 0, max: 50, default: 8 },
+  { key: 'jobValue', label: 'Average booked job', suffix: '$', min: 100, max: 2000, default: 475 },
+  { key: 'closeRate', label: 'Estimated close rate', suffix: '%', min: 1, max: 100, default: 42 },
+] as const;
+
+const WEEKS_PER_MONTH = 4.33;
+
+function estimate(missedCalls: number, jobValue: number, closeRate: number) {
+  const monthly = Math.round(missedCalls * WEEKS_PER_MONTH * jobValue * (closeRate / 100));
+  return { monthly, annual: monthly * 12 };
+}
+
+const currency = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 0,
+});
+
+const defaults = Object.fromEntries(FIELDS.map((f) => [f.key, f.default]));
+const initial = estimate(defaults.missedCalls, defaults.jobValue, defaults.closeRate);
+---
+
+<div class="calculator" data-calculator>
+  <div class="calculator__inputs">
+    {
+      FIELDS.map((field) => (
+        <label class="calculator__field">
+          <span class="calculator__label">{field.label}</span>
+          <span class="calculator__number-row">
+            <input
+              type="number"
+              data-input={field.key}
+              data-role="number"
+              min={field.min}
+              max={field.max}
+              value={field.default}
+            />
+            {field.suffix && <span class="calculator__suffix">{field.suffix}</span>}
+          </span>
+          <input
+            type="range"
+            data-input={field.key}
+            data-role="range"
+            min={field.min}
+            max={field.max}
+            value={field.default}
+            aria-label={`${field.label} slider`}
+          />
+        </label>
+      ))
+    }
+  </div>
+
+  <div class="calculator__outputs" aria-live="polite">
+    <div class="calculator__stat">
+      <p class="calculator__stat-label">Estimated monthly opportunity value</p>
+      <p class="calculator__stat-value" data-output="monthly">{currency.format(initial.monthly)}</p>
+    </div>
+    <div class="calculator__stat">
+      <p class="calculator__stat-label">Estimated annual opportunity value</p>
+      <p class="calculator__stat-value" data-output="annual">{currency.format(initial.annual)}</p>
+    </div>
+  </div>
+
+  <p class="calculator__disclaimer">
+    Illustrative estimate only, based on the numbers you enter. It does not assume every missed
+    call would book, and it is not a guarantee, an industry benchmark, or a forecast of your
+    results.
+  </p>
+</div>
+
+<style>
+  .calculator {
+    background: oklch(0.98 0.008 82 / 0.08);
+    border: 1px solid var(--color-line-on-dark);
+    border-radius: var(--radius-card);
+    padding: var(--space-5) var(--space-4);
+    max-width: 820px;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .calculator__inputs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .calculator__field {
+    display: block;
+  }
+
+  .calculator__label {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--color-ivory-dim);
+  }
+
+  .calculator__number-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: var(--space-2);
+    border-bottom: 1px solid var(--color-gold);
+    padding-bottom: 8px;
+  }
+
+  .calculator__number-row input[type='number'] {
+    width: 100%;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-ivory-bright);
+    padding: 0;
+  }
+
+  .calculator__number-row input[type='number']:focus-visible {
+    outline: none;
+  }
+
+  .calculator__suffix {
+    font-size: 0.875rem;
+    color: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  input[type='range'] {
+    width: 100%;
+    margin-top: var(--space-3);
+    accent-color: var(--color-gold);
+  }
+
+  input[type='range']:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  .calculator__outputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-line-on-dark);
+  }
+
+  .calculator__stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-ivory-dim);
+    margin: 0;
+  }
+
+  .calculator__stat-value {
+    margin: 8px 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 1.4vw + 1.35rem, 2.25rem);
+    color: var(--color-gold);
+  }
+
+  .calculator__disclaimer {
+    margin: var(--space-4) 0 0;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--color-ivory-dim);
+    opacity: 0.85;
+  }
+
+  @media (max-width: 640px) {
+    .calculator__inputs {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .calculator__outputs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const WEEKS_PER_MONTH = 4.33;
+  const currency = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-calculator]').forEach((calc) => {
+    const keys = ['missedCalls', 'jobValue', 'closeRate'] as const;
+    const pairs = Object.fromEntries(
+      keys.map((key) => [
+        key,
+        {
+          number: calc.querySelector<HTMLInputElement>(`[data-input="${key}"][data-role="number"]`),
+          range: calc.querySelector<HTMLInputElement>(`[data-input="${key}"][data-role="range"]`),
+        },
+      ])
+    ) as Record<(typeof keys)[number], { number: HTMLInputElement | null; range: HTMLInputElement | null }>;
+
+    const outputs = {
+      monthly: calc.querySelector<HTMLElement>('[data-output="monthly"]'),
+      annual: calc.querySelector<HTMLElement>('[data-output="annual"]'),
+    };
+
+    function recalculate() {
+      const missedCalls = Number(pairs.missedCalls.number?.value) || 0;
+      const jobValue = Number(pairs.jobValue.number?.value) || 0;
+      const closeRate = Number(pairs.closeRate.number?.value) || 0;
+
+      const monthly = Math.round(missedCalls * WEEKS_PER_MONTH * jobValue * (closeRate / 100));
+      const annual = monthly * 12;
+
+      if (outputs.monthly) outputs.monthly.textContent = currency.format(monthly);
+      if (outputs.annual) outputs.annual.textContent = currency.format(annual);
+    }
+
+    keys.forEach((key) => {
+      const { number, range } = pairs[key];
+      number?.addEventListener('input', () => {
+        if (range && number) range.value = number.value;
+        recalculate();
+      });
+      range?.addEventListener('input', () => {
+        if (number && range) number.value = range.value;
+        recalculate();
+      });
+    });
+  });
+</script>

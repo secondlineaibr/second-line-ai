@@ -1,0 +1,100 @@
+---
+/**
+ * Native <details>/<summary> accordion — no JS needed for the expand/
+ * collapse behavior itself, matching section 8's "avoid unnecessary
+ * client-side JavaScript." Reusable beyond the Homepage: the same
+ * component will back a future dedicated FAQ page. Chevron-rotate
+ * treatment matches Blink's FAQ exactly (sans-bold question, not serif).
+ */
+interface Item {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: Item[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<div class:list={['faq-accordion', className]}>
+  {
+    items.map((item) => (
+      <details class="faq-item">
+        <summary>
+          {item.question}
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 8.5 12 15.5 19 8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <p>{item.answer}</p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq-accordion {
+    max-width: 760px;
+    border-top: 1px solid var(--color-line-on-light);
+  }
+
+  :global(.section--emerald) .faq-accordion {
+    border-top-color: var(--color-line-on-dark);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-line-on-light);
+    padding-block: var(--space-3);
+  }
+
+  :global(.section--emerald) .faq-item {
+    border-bottom-color: var(--color-line-on-dark);
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--color-emerald);
+    transition: transform var(--duration-base) var(--ease-standard);
+  }
+
+  :global(.section--emerald) .faq-icon {
+    color: var(--color-gold);
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-item p {
+    margin-top: var(--space-2);
+    margin-bottom: 0;
+    max-width: 65ch;
+    opacity: 0.85;
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-icon {
+      transition: none;
+    }
+  }
+</style>

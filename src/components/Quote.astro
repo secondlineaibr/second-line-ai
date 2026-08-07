@@ -1,0 +1,39 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<figure class:list={['quote', className]}>
+  <div class="quote-rule" aria-hidden="true"></div>
+  <blockquote class="quote-text">
+    <slot />
+  </blockquote>
+</figure>
+
+<style>
+  .quote {
+    margin: 0 auto;
+    max-width: 780px;
+    text-align: center;
+  }
+
+  .quote-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--color-gold);
+    margin: 0 auto var(--space-4);
+  }
+
+  .quote-text {
+    margin: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.5rem, 1vw + 1.35rem, 2.25rem);
+    line-height: 1.4;
+    color: inherit;
+  }
+</style>

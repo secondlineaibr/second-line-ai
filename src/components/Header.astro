@@ -1,0 +1,290 @@
+---
+/**
+ * Nav item set, brand mark, and colors are ported from Blink exactly. The
+ * fixed/transparent-to-solid scroll behavior is kept from our existing
+ * build rather than Blink's absolute-positioned header (which scrolls out
+ * of view after the hero) — PROJECT_MAGNOLIA.md section 3 explicitly
+ * requires "sticky after scrolling," and that section of the spec stays
+ * controlling per the 2026-08-07 update. Everything about how it LOOKS
+ * still matches Blink; only this one interaction behavior stays as
+ * previously built.
+ */
+import { CONTACT, BOOKING_URL, CTA } from '@lib/constants';
+import Icon from '@components/Icon.astro';
+import Button from '@components/Button.astro';
+
+const NAV_LINKS = [
+  { label: 'How It Works', href: '/how-it-works.html' },
+  { label: 'Revenue Recovery Desk', href: '/#desk' },
+  { label: 'Marie', href: '/#marie' },
+  { label: 'Founding Partners', href: '/#partners' },
+  { label: 'About', href: '/about.html' },
+] as const;
+---
+
+<header class="site-header" data-header>
+  <div class="nav-wrap container">
+    <a class="brand" href="/" aria-label="Second Line AI home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      Second Line <span class="brand-accent">AI</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+
+    <div class="nav-cta">
+      <a class="phone-link" href={CONTACT.phoneHref}>
+        <Icon name="phone" class="phone-icon" />
+        {CTA.callMarie}
+      </a>
+      <Button href={BOOKING_URL} variant="primary" class="nav-btn" external>
+        {CTA.bookShort}
+      </Button>
+    </div>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-panel"
+      data-nav-toggle
+    >
+      <span class="visually-hidden">Open menu</span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="mobile-panel" id="mobile-panel" data-mobile-panel>
+    <nav aria-label="Mobile">
+      {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <a class="mobile-phone" href={CONTACT.phoneHref}>
+      <Icon name="phone" class="phone-icon" />
+      {CTA.callMarie} — {CONTACT.phoneDisplay}
+    </a>
+    <Button href={BOOKING_URL} variant="primary" size="large" class="mobile-cta" external>
+      {CTA.bookShort}
+    </Button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 500;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard);
+  }
+
+  .site-header.is-scrolled {
+    background: oklch(0.29 0.085 160 / 0.95);
+    backdrop-filter: blur(6px);
+    border-bottom-color: var(--color-line-on-dark);
+  }
+
+  .nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-block: 18px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    color: var(--color-ivory-bright);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid oklch(0.68 0.13 82 / 0.7);
+  }
+
+  .brand-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-gold);
+  }
+
+  .brand-accent {
+    color: var(--color-gold);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-ivory-bright);
+    opacity: 0.85;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-standard);
+  }
+
+  .nav-links a:hover {
+    opacity: 1;
+    color: var(--color-gold);
+  }
+
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+  }
+
+  .phone-link,
+  .mobile-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .phone-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  :global(.nav-btn) {
+    min-height: 42px;
+    padding-inline: 20px;
+    font-size: 0.8125rem;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid oklch(0.98 0.008 82 / 0.25);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    cursor: pointer;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--color-ivory-bright);
+    margin: 4px 0;
+  }
+
+  .mobile-panel {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--color-emerald);
+    border-top: 1px solid var(--color-line-on-dark);
+    padding: 8px 20px 24px;
+  }
+
+  .mobile-panel nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-panel a {
+    padding: 14px 0;
+    color: var(--color-ivory-bright);
+    opacity: 0.85;
+    text-decoration: none;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--color-line-on-dark);
+  }
+
+  .mobile-phone {
+    margin-top: 14px;
+    font-size: 1rem;
+  }
+
+  :global(.mobile-cta) {
+    margin-top: 14px;
+    width: 100%;
+  }
+
+  .site-header.is-open .mobile-panel {
+    display: flex;
+  }
+
+  .site-header.is-open {
+    background: var(--color-emerald);
+  }
+
+  @media (max-width: 900px) {
+    .nav-links {
+      display: none;
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+
+  const setScrolled = () => {
+    if (!header) return;
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+  };
+
+  setScrolled();
+  window.addEventListener('scroll', setScrolled, { passive: true });
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = header?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+
+  document.querySelectorAll('[data-mobile-panel] a').forEach((link) => {
+    link.addEventListener('click', () => {
+      header?.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      header?.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>

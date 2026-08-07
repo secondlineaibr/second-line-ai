@@ -1,0 +1,138 @@
+---
+/**
+ * Signature interactive element for The Revenue Recovery Framework™.
+ * Layout ported from Blink exactly: a 2x2 grid of bordered cells (1 col
+ * on mobile) rather than a vertical numbered list. Reveals as the visitor
+ * scrolls; content is fully visible with no JavaScript — the reveal is a
+ * progressive enhancement layered on top via a class the script itself
+ * adds, so nothing depends on JS to be readable.
+ */
+interface Step {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  steps: Step[];
+  class?: string;
+}
+
+const { steps, class: className } = Astro.props;
+---
+
+<ol class:list={['timeline', className]} data-timeline>
+  {
+    steps.map((step, i) => (
+      <li class="timeline-step" data-timeline-step>
+        <span class="timeline-number">{String(i + 1).padStart(2, '0')}</span>
+        <h3>{step.title}</h3>
+        <p>{step.description}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--color-line-on-dark);
+    border: 1px solid var(--color-line-on-dark);
+    overflow: hidden;
+  }
+
+  .timeline-step {
+    background: var(--color-emerald);
+    padding: var(--space-4);
+    opacity: 1;
+    transform: none;
+    transition: background var(--duration-base) var(--ease-standard);
+  }
+
+  .timeline-step:hover {
+    background: oklch(0.98 0.008 82 / 0.06);
+  }
+
+  :global(.timeline.js-reveal) .timeline-step {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity var(--duration-slow) var(--ease-out),
+      transform var(--duration-slow) var(--ease-out);
+  }
+
+  :global(.timeline.js-reveal) .timeline-step.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .timeline-number {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-gold);
+  }
+
+  .timeline-step h3 {
+    color: var(--color-ivory-bright);
+    font-size: var(--text-subsection);
+    margin: var(--space-5) 0 var(--space-2);
+  }
+
+  .timeline-step p {
+    margin: 0;
+    color: var(--color-ivory-dim);
+    font-size: 0.875rem;
+    max-width: 42ch;
+  }
+
+  @media (max-width: 640px) {
+    .timeline {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const timelines = document.querySelectorAll<HTMLElement>('[data-timeline]');
+
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    timelines.forEach((timeline) => {
+      timeline.classList.add('js-reveal');
+      const steps = Array.from(
+        timeline.querySelectorAll<HTMLElement>('[data-timeline-step]')
+      );
+
+      const revealAll = () => {
+        steps.forEach((step) => step.classList.add('is-visible'));
+        observer.disconnect();
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+      );
+
+      steps.forEach((step) => observer.observe(step));
+
+      // Safety net: anything that doesn't literally scroll the page
+      // (crawlers, some accessibility/testing tooling, a very fast
+      // scroll past the threshold) must still see this content — it's
+      // real page copy, not decoration. Force it visible shortly after
+      // load if scrolling hasn't revealed it yet.
+      window.setTimeout(revealAll, 1500);
+    });
+  }
+</script>

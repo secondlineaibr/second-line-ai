@@ -1,0 +1,1079 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import SectionWrap from '@components/SectionWrap.astro';
+import Eyebrow from '@components/Eyebrow.astro';
+import Button from '@components/Button.astro';
+import Icon from '@components/Icon.astro';
+import CtaBanner from '@components/CtaBanner.astro';
+import PhotoPlaceholder from '@components/PhotoPlaceholder.astro';
+import FrameworkTimeline from '@components/FrameworkTimeline.astro';
+import FaqAccordion from '@components/FaqAccordion.astro';
+import CallFlowDiagram from '@components/CallFlowDiagram.astro';
+import RevenueCalculator from '@components/RevenueCalculator.astro';
+import { CONTACT, BOOKING_URL, SITE_URL, SITE_NAME, CTA } from '@lib/constants';
+
+const structuredDataGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: SITE_NAME,
+      url: SITE_URL,
+      description:
+        'Managed HVAC revenue recovery for residential contractors in Baton Rouge and across Louisiana.',
+    },
+    {
+      '@type': ['LocalBusiness', 'ProfessionalService'],
+      name: SITE_NAME,
+      url: SITE_URL,
+      description:
+        'Second Line AI helps Louisiana HVAC companies recover more of the revenue they are already paying to generate through The HVAC Revenue Recovery Desk™, a fully managed Revenue Recovery Partnership.',
+      telephone: '+12253252700',
+      email: CONTACT.email,
+      serviceType: 'HVAC Revenue Recovery',
+      areaServed: { '@type': 'State', name: 'Louisiana' },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Baton Rouge',
+        addressRegion: 'LA',
+        addressCountry: 'US',
+      },
+    },
+  ],
+};
+
+const flowSteps = [
+  'Incoming Call',
+  'Answer',
+  'Identify',
+  'Capture Need',
+  'Book / Escalate',
+  'Update System',
+  'Report',
+];
+
+const frameworkSteps = [
+  {
+    title: 'Assess',
+    description:
+      'Review busy periods, after-hours, weekends, overflow, and the handoffs where demand can go quiet.',
+  },
+  {
+    title: 'Design',
+    description:
+      'Shape the Desk around your company, service area, brand voice, scheduling rules, and escalation procedures.',
+  },
+  {
+    title: 'Protect',
+    description:
+      'Give every caller a calm, accurate next step when your existing team is already at capacity.',
+  },
+  {
+    title: 'Improve',
+    description:
+      'Review what is happening and refine the system as your operation, season, and policies change.',
+  },
+];
+
+const useCases = [
+  {
+    title: 'After-Hours',
+    description: 'Keep the front door open after the office closes — without pretending to be a technician.',
+  },
+  {
+    title: 'Overflow',
+    description: 'Give your team breathing room when three calls arrive at once and every ring matters.',
+  },
+  {
+    title: 'Replacement Interest',
+    description: "Capture the homeowner's context so a replacement conversation does not disappear into voicemail.",
+  },
+  {
+    title: 'Existing Customers',
+    description: 'Identify the caller and route the request according to your approved procedures.',
+  },
+];
+
+const marieChecklist = [
+  'Gather caller information',
+  'Understand the reason for the call',
+  'Identify service or replacement intent',
+  'Follow the approved next step',
+  'Escalate without improvising',
+];
+
+const founderChecklist = [
+  'Direct access to the Second Line AI team',
+  'A highly customized Revenue Recovery Desk™ setup',
+  'Early influence over workflows',
+  'Priority attention during implementation',
+  'Founding Partner recognition',
+];
+
+const strongFit = [
+  'Residential HVAC operation',
+  'Meaningful inbound call volume',
+  'Busy or after-hours periods',
+  'Managed support over another dashboard',
+  'Willingness to define clear rules',
+];
+
+const notAFit = [
+  'Unsupervised technical diagnosis',
+  'Guaranteed revenue expectations',
+  'A generic bot with no configuration',
+  'No participation in implementation',
+];
+
+const faqItems = [
+  {
+    question: 'What exactly is The HVAC Revenue Recovery Desk™?',
+    answer:
+      'It is a managed extension of your front office: configured around your company, services, hours, policies, escalation rules, and customer experience. AI is the mechanism; recovering more value from existing demand is the point.',
+  },
+  {
+    question: 'Is Marie replacing my receptionist?',
+    answer:
+      'No. The Desk is designed to complement and extend your existing team — especially during overflow, after-hours, weekends, and peak demand.',
+  },
+  {
+    question: 'Can Marie book appointments?',
+    answer:
+      'That depends on your scheduling rules, systems, and approved workflow. Your 17-Minute Revenue Recovery Audit is where we determine what should happen in your operation.',
+  },
+  {
+    question: 'Does Marie diagnose HVAC problems?',
+    answer:
+      'No. Marie does not diagnose equipment, invent pricing, or provide unauthorized technical advice. She captures the request and follows the escalation procedure you approve.',
+  },
+  {
+    question: 'Can this work with my current software?',
+    answer:
+      'Possibly. We do not assume an integration before understanding your tools and workflow. We design around what is actually in place.',
+  },
+  {
+    question: 'Do you guarantee more revenue?',
+    answer:
+      'No. Second Line AI improves call capture and operating consistency, but no responsible partner can guarantee a business outcome.',
+  },
+];
+
+const faqStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<Layout
+  title="Second Line AI — Never Miss the Money"
+  description="Managed HVAC revenue recovery for residential contractors in Baton Rouge and across Louisiana."
+>
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(structuredDataGraph)} />
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(faqStructuredData)} />
+  <Header />
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <SectionWrap tone="emerald" tight class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <Eyebrow>Baton Rouge · Louisiana</Eyebrow>
+          <h1>Never Miss<br /><em>the Money.</em></h1>
+          <p class="hero-lede">
+            Your HVAC company already works hard to make the phone ring. Second Line AI helps
+            you capture more of the demand you already paid to create.
+          </p>
+          <div class="hero-actions">
+            <Button href={BOOKING_URL} variant="primary" size="large" showArrow external>
+              {CTA.bookFull}
+            </Button>
+            <Button href={CONTACT.phoneHref} variant="secondary" size="large">
+              <Icon name="phone" class="hero-phone-icon" />
+              {CTA.callMarie} — {CONTACT.phoneDisplay}
+            </Button>
+          </div>
+          <p class="hero-note">
+            <Icon name="check" class="hero-note-icon" />
+            No pressure. No invented promises. Just a focused first look.
+          </p>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card__top">
+            <span class="hero-card__badge-icon" aria-hidden="true"><Icon name="phone" /></span>
+            <div>
+              <p class="hero-card__title">Revenue Recovery Desk™</p>
+              <p class="hero-card__subtitle">Live intake specialist</p>
+            </div>
+            <span class="hero-card__live"><span class="hero-card__dot" aria-hidden="true"></span>Answering</span>
+          </div>
+          <div class="hero-card__body">
+            <p class="hero-card__label">Incoming opportunity</p>
+            <p class="hero-card__scenario">After-hours service call</p>
+            <p class="hero-card__status">
+              <span class="hero-card__ring" aria-hidden="true"><Icon name="phone" /></span>
+              Marie is gathering the next best step.
+            </p>
+          </div>
+          <div class="hero-card__bottom">
+            <span>Configured for your company</span>
+            <span class="hero-card__step">01 / 04</span>
+          </div>
+        </div>
+      </div>
+    </SectionWrap>
+
+    <!-- ============ Three-beat recognition strip ============ -->
+    <div class="strip-wrap">
+      <div class="container strip-grid">
+        <div>
+          <p class="strip-lead">The phone rings.</p>
+          <p class="strip-note">Your team is already earning the opportunity.</p>
+        </div>
+        <div>
+          <p class="strip-lead">The call goes quiet.</p>
+          <p class="strip-note">A busy dispatcher, voicemail, or a slow follow-up changes the next move.</p>
+        </div>
+        <div>
+          <p class="strip-lead">The spend remains.</p>
+          <p class="strip-note">Revenue Recovery is the work between demand and a completed conversation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ Recognition ============ -->
+    <SectionWrap tone="ivory" tight>
+      <div class="recognition-grid">
+        <div>
+          <Eyebrow>Recognition</Eyebrow>
+          <h2>A missed call is not just a missed call.</h2>
+        </div>
+        <div class="recognition-copy">
+          <p class="lede">
+            It may be a homeowner you paid to reach through Google Ads, Local Services Ads,
+            referrals, reputation, trucks, and years of showing up well. That does not mean
+            every missed call becomes a lost job. It does mean the handoff deserves a closer
+            look.
+          </p>
+          <a href="#calculator" class="text-link">
+            See what the opportunity could be worth <Icon name="arrow-right" class="link-icon" />
+          </a>
+        </div>
+      </div>
+    </SectionWrap>
+
+    <!-- ============ The Revenue Recovery Framework ============ -->
+    <SectionWrap tone="emerald">
+      <div class="framework-grid">
+        <div>
+          <Eyebrow>The Operating Model</Eyebrow>
+          <h2>A system, not another dashboard.</h2>
+          <p class="framework-intro">
+            We build around the way your company actually runs, then stay close enough to make
+            the system better with you.
+          </p>
+        </div>
+        <FrameworkTimeline steps={frameworkSteps} />
+      </div>
+    </SectionWrap>
+
+    <!-- ============ The Desk ============ -->
+    <SectionWrap tone="secondary" id="desk">
+      <div class="desk-grid">
+        <PhotoPlaceholder
+          ratio="4/5"
+          label="Revenue Recovery Desk™"
+          scene="A warm, well-kept Louisiana residential porch, photographed in natural evening light — not a generic answering-bot visual."
+        />
+        <div>
+          <Eyebrow>The Product</Eyebrow>
+          <h2>Meet the HVAC Revenue Recovery Desk™.</h2>
+          <p class="lede">
+            A managed extension of your front office, configured around your company name,
+            service area, hours, services, scheduling rules, emergency procedures, and brand
+            voice.
+          </p>
+          <div class="use-case-grid">
+            {
+              useCases.map((item) => (
+                <div class="use-case">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+              ))
+            }
+          </div>
+          <a href="#marie" class="inline-cta">
+            See Marie in action <Icon name="arrow-right" class="link-icon" />
+          </a>
+        </div>
+      </div>
+
+      <div class="flow-wrap">
+        <h3 class="flow-heading">How One Opportunity Moves Through the Desk</h3>
+        <CallFlowDiagram steps={flowSteps} />
+      </div>
+    </SectionWrap>
+
+    <!-- ============ Marie ============ -->
+    <SectionWrap tone="ivory" id="marie">
+      <div class="marie-grid">
+        <div>
+          <Eyebrow>Proof You Can Experience</Eyebrow>
+          <h2>Meet Marie.<br /><em>She&rsquo;s answering right now.</em></h2>
+          <p class="lede">
+            Marie is an AI-powered HVAC intake specialist inside the broader Revenue Recovery
+            Desk™. She is warm, calm, and clear about what she can — and cannot — do.
+          </p>
+          <div class="marie-actions">
+            <Button href={CONTACT.phoneHref} variant="primary" size="large">
+              <Icon name="phone" class="hero-phone-icon" />
+              {CTA.callMarie} — {CONTACT.phoneDisplay}
+            </Button>
+            <span class="marie-demo-note"><Icon name="calendar" class="link-icon" /> Live demo line</span>
+          </div>
+        </div>
+
+        <div class="marie-panel">
+          <p class="marie-panel__label">What Marie will do</p>
+          <ul class="marie-panel__list">
+            {
+              marieChecklist.map((item) => (
+                <li><Icon name="check" class="check-icon" />{item}</li>
+              ))
+            }
+          </ul>
+          <p class="marie-panel__note">
+            She does not diagnose equipment, make up pricing, or promise what your company has
+            not approved.
+          </p>
+        </div>
+      </div>
+    </SectionWrap>
+
+    <!-- ============ Revenue-at-Risk Calculator ============ -->
+    <SectionWrap tone="emerald" id="calculator">
+      <div class="calc-grid">
+        <div>
+          <Eyebrow>A Grounded Estimate</Eyebrow>
+          <h2>What could be sitting in the gap?</h2>
+          <p class="framework-intro">
+            Use your own assumptions. This is not a promise or a forecast — it is a simple way
+            to understand the economic question worth asking.
+          </p>
+          <p class="calc-note">
+            <Icon name="compass" class="link-icon" />
+            Estimates are based on the inputs you provide and do not represent guaranteed
+            recoverable revenue.
+          </p>
+        </div>
+        <RevenueCalculator />
+      </div>
+    </SectionWrap>
+
+    <!-- ============ Founding Partners ============ -->
+    <SectionWrap tone="gold" tight id="partners">
+      <div class="partners-grid">
+        <div>
+          <Eyebrow>For the Early Movers</Eyebrow>
+          <h2>Help shape the category.</h2>
+          <p class="lede">
+            Second Line AI is early. We are being transparent about that because the right
+            first partners should have a voice in how the system evolves. Recognition is a
+            byproduct of doing thoughtful work together — not the main reason to participate.
+          </p>
+        </div>
+        <ul class="check-list partners-list">
+          {founderChecklist.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <Button href={BOOKING_URL} variant="primary" size="large" showArrow external class="partners-cta">
+        Ask About Founding Partner Status
+      </Button>
+    </SectionWrap>
+
+    <!-- ============ Fit / Not a Fit ============ -->
+    <SectionWrap tone="ivory">
+      <div class="fit-intro">
+        <Eyebrow>Good Fit, or Not?</Eyebrow>
+        <h2 class="max-720">Built for the right HVAC company.</h2>
+        <p class="lede max-720">A selective fit is a better fit. Your Audit should help both sides decide honestly.</p>
+      </div>
+      <div class="fit-grid">
+        <div class="fit-box">
+          <p class="fit-label">Likely a Fit</p>
+          <ul class="check-list">
+            {strongFit.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="fit-box fit-box--muted">
+          <p class="fit-label fit-label--muted">Probably Not a Fit</p>
+          <ul class="x-list">
+            {notAFit.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </SectionWrap>
+
+    <!-- ============ FAQ ============ -->
+    <SectionWrap tone="secondary">
+      <Eyebrow>Questions Worth Asking</Eyebrow>
+      <h2 class="max-720">Straight answers.</h2>
+      <FaqAccordion items={faqItems} class="faq-wrap" />
+    </SectionWrap>
+
+    <!-- ============ Final CTA ============ -->
+    <SectionWrap tone="emerald" center>
+      <Eyebrow center>Start With the Facts</Eyebrow>
+      <CtaBanner
+        heading="Find out where the money goes quiet."
+        body="A focused 17-minute conversation about how your company handles demand when the office is busy, closed, or stretched thin."
+        showPhone
+      />
+    </SectionWrap>
+  </main>
+  <Footer />
+
+  <div class="mobile-cta-bar">
+    <a href={CONTACT.phoneHref} class="mobile-cta-bar__phone">
+      <Icon name="phone" class="hero-phone-icon" /> {CTA.callMarie}
+    </a>
+    <a href={BOOKING_URL} class="mobile-cta-bar__book" target="_blank" rel="noopener noreferrer">
+      Book Audit <Icon name="arrow-up-right" class="link-icon" />
+    </a>
+  </div>
+</Layout>
+
+<style>
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(ellipse at 15% -10%, oklch(0.68 0.13 82 / 0.16), transparent 55%),
+      var(--color-emerald);
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: var(--space-6);
+    /* start, not center: centering the shorter column left a large dead
+       gap below the hero copy on desktop. */
+    align-items: start;
+    padding-top: calc(var(--header-height) + var(--space-4));
+    padding-bottom: var(--space-4);
+    position: relative;
+  }
+
+  .hero-copy h1 {
+    font-size: var(--text-hero);
+    letter-spacing: -0.03em;
+    color: var(--color-ivory-bright);
+  }
+
+  .hero-copy h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-gold);
+  }
+
+  .hero-lede {
+    margin-top: var(--space-4);
+    font-size: var(--text-lede);
+    color: oklch(0.98 0.008 82 / 0.75);
+    max-width: 46ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .hero-phone-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--space-3);
+    font-size: 0.8125rem;
+    color: oklch(0.98 0.008 82 / 0.55);
+  }
+
+  .hero-note-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--color-gold);
+  }
+
+  .hero-card {
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-line-on-dark);
+    background: oklch(0.29 0.085 160 / 0.7);
+    backdrop-filter: blur(8px);
+    padding: var(--space-4);
+    max-width: 420px;
+    margin-inline: auto;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero-card__top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-line-on-dark);
+  }
+
+  .hero-card__badge-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-obsidian);
+    flex-shrink: 0;
+  }
+
+  .hero-card__badge-icon :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero-card__title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-ivory-bright);
+    margin: 0;
+  }
+
+  .hero-card__subtitle {
+    font-size: 0.75rem;
+    color: oklch(0.98 0.008 82 / 0.55);
+    margin: 2px 0 0;
+  }
+
+  .hero-card__live {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-gold);
+    white-space: nowrap;
+  }
+
+  .hero-card__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    animation: hero-pulse 1.8s ease-in-out infinite;
+  }
+
+  .hero-card__body {
+    padding-block: var(--space-4);
+  }
+
+  .hero-card__label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    /* 0.45 measured at 3.75:1 on the Emerald hero card — fails AA. */
+    color: oklch(0.98 0.008 82 / 0.68);
+    margin: 0;
+  }
+
+  .hero-card__scenario {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-ivory-bright);
+    margin: 10px 0 0;
+  }
+
+  .hero-card__status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: var(--space-3) 0 0;
+    font-size: 0.875rem;
+    color: oklch(0.98 0.008 82 / 0.7);
+  }
+
+  .hero-card__ring {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid oklch(0.68 0.13 82 / 0.5);
+    color: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  .hero-card__ring :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+
+  .hero-card__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-line-on-dark);
+    font-size: 0.75rem;
+    /* 0.5 measured at 4.26:1 on the Emerald hero card — just under AA. */
+    color: oklch(0.98 0.008 82 / 0.68);
+  }
+
+  .hero-card__step {
+    font-family: var(--font-mono);
+    color: var(--color-gold);
+  }
+
+  @keyframes hero-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-card__dot { animation: none; }
+  }
+
+  /* ---------- Recognition strip ---------- */
+  .strip-wrap {
+    background: var(--color-ivory);
+    border-bottom: 1px solid var(--color-line-on-light);
+  }
+
+  .strip-grid {
+    display: grid;
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+  }
+
+  .strip-lead {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    color: var(--color-emerald);
+    margin: 0;
+  }
+
+  .strip-note {
+    margin: 4px 0 0;
+    font-size: 0.875rem;
+    color: var(--color-slate);
+  }
+
+  @media (min-width: 640px) {
+    .strip-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ---------- Shared ---------- */
+  .max-720 { max-width: 720px; }
+  .lede { font-size: var(--text-lede); opacity: 0.85; }
+  .framework-intro { margin-top: var(--space-3); max-width: 42ch; opacity: 0.75; }
+
+  .text-link,
+  .inline-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--space-4);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-emerald);
+    text-decoration: underline;
+    text-decoration-color: var(--color-gold);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 8px;
+  }
+
+  .inline-cta {
+    text-decoration: none;
+    background: var(--color-emerald);
+    color: var(--color-ivory-bright);
+    padding: 14px 22px;
+    border-radius: var(--radius-sm);
+    margin-top: var(--space-5);
+  }
+
+  .link-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* ---------- Recognition ---------- */
+  .recognition-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 1024px) {
+    .recognition-grid {
+      grid-template-columns: 0.8fr 1.2fr;
+      align-items: end;
+    }
+  }
+
+  .recognition-copy {
+    max-width: 640px;
+  }
+
+  /* ---------- Framework ---------- */
+  .framework-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 1024px) {
+    .framework-grid {
+      grid-template-columns: 0.72fr 1.28fr;
+    }
+  }
+
+  /* ---------- Desk ---------- */
+  .desk-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 1024px) {
+    .desk-grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      align-items: center;
+    }
+  }
+
+  .use-case-grid {
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  @media (min-width: 640px) {
+    .use-case-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .use-case {
+    border-top: 1px solid var(--color-line-on-light);
+    padding-top: var(--space-2);
+  }
+
+  .use-case h3 {
+    font-size: 1rem;
+    color: var(--color-emerald);
+    margin-bottom: 6px;
+  }
+
+  .use-case p {
+    font-size: 0.875rem;
+    color: var(--color-slate);
+    margin: 0;
+  }
+
+  .flow-wrap {
+    margin-top: var(--space-6);
+  }
+
+  .flow-heading {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+  }
+
+  /* ---------- Marie ---------- */
+  .marie-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 1024px) {
+    .marie-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+      align-items: center;
+    }
+  }
+
+  .marie-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .marie-demo-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: var(--color-slate);
+  }
+
+  .marie-panel {
+    position: relative;
+    border: 1px solid var(--color-line-on-light);
+    background: var(--color-ivory-soft);
+    padding: var(--space-4);
+    border-radius: var(--radius-card);
+  }
+
+  .marie-panel__label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-slate);
+    margin: 0 0 var(--space-3);
+  }
+
+  .marie-panel__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .marie-panel__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border-bottom: 1px solid var(--color-line-on-light);
+    padding-bottom: var(--space-2);
+    font-size: 0.9375rem;
+  }
+
+  .check-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-emerald);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .marie-panel__note {
+    margin: var(--space-3) 0 0;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--color-slate);
+  }
+
+  /* ---------- Calculator section ---------- */
+  .calc-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 1024px) {
+    .calc-grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: start;
+    }
+  }
+
+  .calc-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: var(--space-4);
+    font-size: 0.875rem;
+    color: oklch(0.98 0.008 82 / 0.65);
+    max-width: 40ch;
+  }
+
+  .calc-note .link-icon {
+    margin-top: 3px;
+    color: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  /* ---------- Founding Partners ---------- */
+  .partners-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 1024px) {
+    .partners-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: start;
+    }
+  }
+
+  .partners-list {
+    margin: 0;
+  }
+
+  :global(.partners-cta) {
+    margin-top: var(--space-5);
+  }
+
+  /* ---------- Fit / not fit ---------- */
+  .fit-intro {
+    margin-bottom: var(--space-6);
+  }
+
+  .fit-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .fit-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .fit-box {
+    border: 1px solid var(--color-line-on-light);
+    padding: var(--space-4);
+  }
+
+  .fit-box--muted {
+    background: color-mix(in oklch, var(--color-secondary) 50%, var(--color-ivory));
+  }
+
+  .fit-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-emerald);
+    margin: 0 0 var(--space-3);
+  }
+
+  .fit-label--muted {
+    color: var(--color-slate);
+  }
+
+  /* ---------- Check / X lists ---------- */
+  .check-list li,
+  .x-list li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 12px;
+    font-size: 0.9375rem;
+  }
+
+  .check-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 12px;
+    height: 8px;
+    border-left: 2px solid var(--color-emerald);
+    border-bottom: 2px solid var(--color-emerald);
+    transform: rotate(-45deg);
+  }
+
+  .x-list li {
+    color: var(--color-slate);
+  }
+
+  .x-list li::before {
+    content: '\2715';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-slate);
+    font-size: 0.75rem;
+  }
+
+  :global(.section--emerald) .check-list li::before,
+  :global(.section--gold) .check-list li::before {
+    border-color: var(--color-obsidian);
+  }
+
+  :global(.section--emerald) .check-list li {
+    color: var(--color-ivory-bright);
+  }
+
+  :global(.section--gold) .check-list li {
+    color: var(--color-obsidian);
+  }
+
+  /* ---------- FAQ ---------- */
+  :global(.faq-wrap) {
+    margin-top: var(--space-6);
+  }
+
+  /* ---------- Mobile sticky CTA bar ---------- */
+  .mobile-cta-bar {
+    display: none;
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 600;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--color-line-on-dark);
+    background: var(--color-emerald);
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .mobile-cta-bar__phone,
+  .mobile-cta-bar__book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+
+  .mobile-cta-bar__phone {
+    color: var(--color-ivory-bright);
+  }
+
+  .mobile-cta-bar__book {
+    background: var(--color-gold);
+    color: var(--color-obsidian);
+  }
+
+  @media (max-width: 900px) {
+    .mobile-cta-bar {
+      display: grid;
+    }
+
+    :global(.site-footer) {
+      padding-bottom: calc(var(--space-4) + 64px);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-card {
+      max-width: 460px;
+    }
+  }
+</style>

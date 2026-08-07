@@ -1,0 +1,142 @@
+---
+/**
+ * The Marie live-demo visual. Explicitly not a human avatar, robot/chatbot
+ * illustration, or generic AI artwork — per the 2026-08-05 refinement pass.
+ * Instead: an abstract voiceline waveform (the site's existing signature
+ * motif) plus a live-call badge and the real phone number, styled as a
+ * premium call card.
+ */
+import Button from '@components/Button.astro';
+import { CONTACT, CTA } from '@lib/constants';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['call-card', className]}>
+  <div class="call-card__badge">
+    <span class="call-card__dot" aria-hidden="true"></span>
+    Live Demo Line
+  </div>
+
+  <svg
+    class="call-card__wave"
+    viewBox="0 0 260 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path
+      d="M2 14 C 10 14, 10 4, 18 4 C 26 4, 26 24, 34 24 C 42 24, 42 8, 50 8 C 58 8, 58 20, 66 20 C 74 20, 74 14, 84 14 L 130 14"
+      stroke-width="1.4"
+      stroke-linecap="round"
+      fill="none"
+    ></path>
+    <path
+      d="M130 14 L176 14 C 186 14, 186 20, 194 20 C 202 20, 202 8, 210 8 C 218 8, 218 24, 226 24 C 234 24, 234 4, 242 4 C 250 4, 250 14, 258 14"
+      stroke-width="1.4"
+      stroke-linecap="round"
+      fill="none"
+    ></path>
+    <circle class="call-card__marker" cx="130" cy="14" r="3"></circle>
+  </svg>
+
+  <p class="call-card__instruction">
+    Pretend you&rsquo;re a homeowner with a no-cooling emergency. Call and let Marie guide the
+    conversation.
+  </p>
+
+  <p class="call-card__number">{CONTACT.phoneDisplay}</p>
+
+  <Button href={CONTACT.phoneHref} variant="primary" size="large" class="call-card__cta">
+    {CTA.callMarie} — {CONTACT.phoneDisplay}
+  </Button>
+</div>
+
+<style>
+  .call-card {
+    background: rgba(246, 241, 227, 0.05);
+    border: 1px solid var(--color-line-on-dark);
+    border-radius: var(--radius-card);
+    padding: var(--space-5) var(--space-4);
+    text-align: center;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+
+  .call-card__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: var(--text-caption);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gold-light);
+    margin-bottom: var(--space-4);
+  }
+
+  .call-card__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-gold-light);
+    animation: call-card-pulse 1.8s ease-in-out infinite;
+  }
+
+  .call-card__wave {
+    width: 100%;
+    max-width: 260px;
+    height: 32px;
+    margin: 0 auto var(--space-4);
+    display: block;
+  }
+
+  .call-card__wave path {
+    stroke: var(--color-gold-light);
+  }
+
+  .call-card__marker {
+    fill: var(--color-gold-light);
+  }
+
+  .call-card__instruction {
+    font-size: 0.9375rem;
+    color: var(--color-ivory-dim);
+    max-width: 38ch;
+    margin-inline: auto;
+    margin-bottom: var(--space-3);
+  }
+
+  .call-card__number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-ivory);
+    margin-bottom: var(--space-4);
+  }
+
+  :global(.call-card__cta) {
+    width: 100%;
+  }
+
+  @keyframes call-card-pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(0.75);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .call-card__dot {
+      animation: none;
+    }
+  }
+</style>

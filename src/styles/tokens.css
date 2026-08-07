@@ -1,0 +1,92 @@
+/* ============================================================
+   PROJECT MAGNOLIA — Design Tokens
+   Visual identity ported exactly from the approved Blink.new
+   reference build (2026-08-07): oklch color values, Lora / DM Sans /
+   IBM Plex Mono typefaces, and the sharper ~4px radius scale.
+   Source of truth: DESIGN_SYSTEM.md
+   ============================================================ */
+:root {
+  /* Color — oklch, matching the Blink reference exactly */
+  --color-ivory: oklch(0.968 0.012 82); /* background */
+  --color-ivory-soft: oklch(0.985 0.008 82); /* card */
+  --color-ivory-bright: oklch(0.98 0.008 82); /* primary-foreground */
+  --color-obsidian: oklch(0.22 0.012 55); /* foreground / accent-foreground */
+  --color-emerald: oklch(0.29 0.085 160); /* primary */
+  --color-emerald-bright: oklch(0.34 0.09 160); /* primary hover */
+  --color-secondary: oklch(0.91 0.024 82); /* secondary — light warm-gray sections */
+  --color-muted: oklch(0.935 0.014 82);
+  --color-slate: oklch(0.49 0.02 55); /* muted-foreground */
+  --color-gold: oklch(0.68 0.13 82); /* accent */
+  --color-gold-deep: oklch(0.56 0.12 78); /* accent, darker — text-on-light use */
+  --color-line: oklch(0.86 0.018 82); /* border */
+  --color-line-on-dark: oklch(0.98 0.008 82 / 0.15);
+  --color-line-on-light: oklch(0.86 0.018 82);
+
+  /* Aliases — Blink has one accent gold and one dark tone (emerald), not
+     the lighter/deeper variants the component library was originally
+     written against. Aliasing keeps every component's existing CSS
+     correct without a line-by-line rewrite. */
+  --color-gold-light: var(--color-gold);
+  --color-emerald-deep: var(--color-emerald);
+  --color-ivory-dim: oklch(0.98 0.008 82 / 0.7);
+  --color-stone: var(--color-secondary);
+
+  /* Typography */
+  --font-display: 'Lora Variable', Georgia, serif;
+  --font-body: 'DM Sans Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --text-hero: clamp(2.75rem, 5vw + 1rem, 4.75rem);
+  --text-section: clamp(1.875rem, 2.4vw + 1.25rem, 3rem);
+  --text-subsection: 1.5rem;
+  --text-lede: 1.1875rem;
+  --text-body: 1.0625rem;
+  --text-caption: 0.6875rem;
+
+  --leading-heading: 1.05;
+  --leading-body: 1.6;
+
+  /* Spacing */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+
+  --space-section-mobile: 5rem;
+  --space-section-tablet: 6rem;
+  --space-section-desktop: 8rem;
+
+  --header-height: 76px;
+  --container-max: 1280px;
+  --container-padding-mobile: 20px;
+  --container-padding-tablet: 40px;
+  --container-padding-desktop: 40px;
+
+  /* Radius & elevation — Blink's sharper, more architectural scale */
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-card: 4px;
+
+  --shadow-sm: 0 2px 8px oklch(0 0 0 / 0.06);
+  --shadow-md: 0 8px 24px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0 20px 60px oklch(0 0 0 / 0.16);
+  --shadow-gold: 0 8px 24px oklch(0.68 0.13 82 / 0.3);
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 400ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0.01ms;
+    --duration-base: 0.01ms;
+    --duration-slow: 0.01ms;
+  }
+}
