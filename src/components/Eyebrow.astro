@@ -1,4 +1,11 @@
 ---
+/**
+ * Matches Blink's SectionLabel exactly: mono font, wide tracking, a short
+ * leading rule. Blink's own color logic (not a lighter/darker split) is
+ * emerald text on light sections, gold accent text on dark ones — which
+ * happens to be exactly what stays WCAG AA-safe: emerald-on-ivory and
+ * gold-on-emerald both clear 4.5:1 comfortably.
+ */
 interface Props {
   center?: boolean;
   class?: string;
@@ -15,16 +22,13 @@ const { center = false, class: className } = Astro.props;
   .eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.6em;
-    font-family: var(--font-body);
+    gap: 0.75em;
+    font-family: var(--font-mono);
     font-size: var(--text-caption);
-    font-weight: 700;
-    letter-spacing: 0.16em;
+    font-weight: 500;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    /* --color-gold is ~2.8:1 on ivory — fails WCAG AA for text (needs
-       4.5:1 at this size). gold-deep clears 5.2:1+ on every light
-       section while still reading as the same accent family. */
-    color: var(--color-gold-deep);
+    color: var(--color-emerald);
     margin-bottom: var(--space-3);
   }
 
@@ -35,20 +39,17 @@ const { center = false, class: className } = Astro.props;
 
   .eyebrow::before {
     content: '';
-    width: 26px;
+    width: 32px;
     height: 1px;
-    background: var(--color-gold-deep);
+    background: currentColor;
     display: inline-block;
     flex-shrink: 0;
   }
 
-  :global(.section--emerald) .eyebrow,
-  :global(.section--charcoal) .eyebrow {
-    color: var(--color-gold-light);
-  }
-
-  :global(.section--emerald) .eyebrow::before,
-  :global(.section--charcoal) .eyebrow::before {
-    background: var(--color-gold-light);
+  /* Dark (emerald) sections flip the label to gold, matching Blink's
+     SectionLabel `light` variant. Gold sections keep the default emerald —
+     that's what the reference build does too. */
+  :global(.section--emerald) .eyebrow {
+    color: var(--color-gold);
   }
 </style>

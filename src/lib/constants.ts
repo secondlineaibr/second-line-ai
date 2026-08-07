@@ -52,20 +52,18 @@ export const CONTACT = {
 } as const;
 
 /**
- * Approved nav IA. "How It Works" and "About" point at their legacy
- * (public/*.html) pages, unchanged, until those pages are rebuilt in a
- * later phase — pointing a new Magnolia-branded label at an unrebuilt,
- * old-styled page would be misleading, but these two labels match their
- * legacy destinations closely enough to be honest as-is. "Revenue Recovery
- * Desk" and "Founding Partners" have no legacy page at all — they anchor
- * to the matching Homepage section (`/#id`) until each gets its own
- * dedicated page.
+ * Nav IA — ported from the Blink reference exactly. "How It Works" and
+ * "About" point at their legacy (public/*.html) pages, unchanged, until
+ * those pages are rebuilt in a later phase. "Revenue Recovery Desk",
+ * "Marie", and "Founding Partners" have no dedicated page yet — they
+ * anchor to the matching Homepage section (`/#id`, same ids Blink used)
+ * until each gets its own page.
  */
 export const NAV_LINKS = [
-  { label: 'Home', href: '/' },
   { label: 'How It Works', href: '/how-it-works.html' },
-  { label: 'Revenue Recovery Desk', href: '/#revenue-recovery-desk' },
-  { label: 'Founding Partners', href: '/#founding-partners' },
+  { label: 'Revenue Recovery Desk', href: '/#desk' },
+  { label: 'Marie', href: '/#marie' },
+  { label: 'Founding Partners', href: '/#partners' },
   { label: 'About', href: '/about.html' },
 ] as const;
 

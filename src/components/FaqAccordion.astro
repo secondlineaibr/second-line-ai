@@ -3,7 +3,8 @@
  * Native <details>/<summary> accordion — no JS needed for the expand/
  * collapse behavior itself, matching section 8's "avoid unnecessary
  * client-side JavaScript." Reusable beyond the Homepage: the same
- * component will back a future dedicated FAQ page.
+ * component will back a future dedicated FAQ page. Chevron-rotate
+ * treatment matches Blink's FAQ exactly (sans-bold question, not serif).
  */
 interface Item {
   question: string;
@@ -24,7 +25,9 @@ const { items, class: className } = Astro.props;
       <details class="faq-item">
         <summary>
           {item.question}
-          <span class="faq-icon" aria-hidden="true" />
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 8.5 12 15.5 19 8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </summary>
         <p>{item.answer}</p>
       </details>
@@ -35,6 +38,11 @@ const { items, class: className } = Astro.props;
 <style>
   .faq-accordion {
     max-width: 760px;
+    border-top: 1px solid var(--color-line-on-light);
+  }
+
+  :global(.section--emerald) .faq-accordion {
+    border-top-color: var(--color-line-on-dark);
   }
 
   .faq-item {
@@ -42,16 +50,15 @@ const { items, class: className } = Astro.props;
     padding-block: var(--space-3);
   }
 
-  :global(.section--emerald) .faq-item,
-  :global(.section--charcoal) .faq-item {
+  :global(.section--emerald) .faq-item {
     border-bottom-color: var(--color-line-on-dark);
   }
 
   .faq-item summary {
     cursor: pointer;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.125rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
     list-style: none;
     display: flex;
     align-items: center;
@@ -64,54 +71,29 @@ const { items, class: className } = Astro.props;
   }
 
   .faq-icon {
-    position: relative;
     flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-  }
-
-  .faq-icon::before,
-  .faq-icon::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: var(--color-gold-deep);
-    transform: translate(-50%, -50%);
+    color: var(--color-emerald);
     transition: transform var(--duration-base) var(--ease-standard);
   }
 
-  :global(.section--emerald) .faq-icon::before,
-  :global(.section--emerald) .faq-icon::after,
-  :global(.section--charcoal) .faq-icon::before,
-  :global(.section--charcoal) .faq-icon::after {
-    background: var(--color-gold-light);
+  :global(.section--emerald) .faq-icon {
+    color: var(--color-gold);
   }
 
-  .faq-icon::before {
-    width: 14px;
-    height: 2px;
-  }
-
-  .faq-icon::after {
-    width: 2px;
-    height: 14px;
-  }
-
-  .faq-item[open] .faq-icon::after {
-    transform: translate(-50%, -50%) rotate(90deg) scaleY(0);
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
   }
 
   .faq-item p {
     margin-top: var(--space-2);
     margin-bottom: 0;
     max-width: 65ch;
-    opacity: 0.9;
+    opacity: 0.85;
+    line-height: 1.7;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .faq-icon::before,
-    .faq-icon::after {
+    .faq-icon {
       transition: none;
     }
   }

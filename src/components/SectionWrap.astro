@@ -1,11 +1,14 @@
 ---
 /**
- * Canonical section wrapper — enforces the Visual Rhythm alternation
- * (Ivory / Emerald / Ivory / Charcoal / Ivory) and the exact section
- * spacing scale (160/120/80) from PROJECT_MAGNOLIA.md section 3.
+ * Canonical section wrapper. Tone set and rotation ported exactly from the
+ * Blink reference build: flat (not gradient) fills, rotating through
+ * Ivory (background) / Emerald (primary) / Secondary (light warm gray) /
+ * Gold (accent) — Blink only ever uses ONE dark tone (primary), never a
+ * second charcoal-style dark, so there's no "avoid two darks in a row"
+ * bookkeeping here — just match the reference section by section.
  */
 interface Props {
-  tone?: 'ivory' | 'ivory-soft' | 'emerald' | 'charcoal';
+  tone?: 'ivory' | 'ivory-soft' | 'emerald' | 'secondary' | 'gold';
   center?: boolean;
   tight?: boolean;
   id?: string;
@@ -66,31 +69,25 @@ const {
     color: var(--color-obsidian);
   }
 
-  .section--emerald {
-    background: linear-gradient(
-      160deg,
-      var(--color-emerald) 0%,
-      var(--color-emerald-deep) 100%
-    );
-    color: var(--color-ivory);
+  .section--secondary {
+    background: color-mix(in oklch, var(--color-secondary) 50%, var(--color-ivory));
+    color: var(--color-obsidian);
   }
 
-  .section--charcoal {
-    background: linear-gradient(
-      160deg,
-      var(--color-charcoal) 0%,
-      var(--color-charcoal-deep) 100%
-    );
-    color: var(--color-ivory-dim);
+  .section--emerald {
+    background: var(--color-emerald);
+    color: var(--color-ivory-bright);
+  }
+
+  .section--gold {
+    background: var(--color-gold);
+    color: var(--color-obsidian);
   }
 
   .section--emerald :global(h1),
   .section--emerald :global(h2),
-  .section--emerald :global(h3),
-  .section--charcoal :global(h1),
-  .section--charcoal :global(h2),
-  .section--charcoal :global(h3) {
-    color: var(--color-ivory);
+  .section--emerald :global(h3) {
+    color: var(--color-ivory-bright);
   }
 
   .section--center {

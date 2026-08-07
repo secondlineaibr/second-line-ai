@@ -1,33 +1,45 @@
 ---
-import { NAV_LINKS, NAV_CTA_LABEL, BOOKING_URL } from '@lib/constants';
+/**
+ * Nav item set, brand mark, and colors are ported from Blink exactly. The
+ * fixed/transparent-to-solid scroll behavior is kept from our existing
+ * build rather than Blink's absolute-positioned header (which scrolls out
+ * of view after the hero) — PROJECT_MAGNOLIA.md section 3 explicitly
+ * requires "sticky after scrolling," and that section of the spec stays
+ * controlling per the 2026-08-07 update. Everything about how it LOOKS
+ * still matches Blink; only this one interaction behavior stays as
+ * previously built.
+ */
+import { CONTACT, BOOKING_URL, CTA } from '@lib/constants';
+import Icon from '@components/Icon.astro';
 import Button from '@components/Button.astro';
 
-const currentPath = Astro.url.pathname;
+const NAV_LINKS = [
+  { label: 'How It Works', href: '/how-it-works.html' },
+  { label: 'Revenue Recovery Desk', href: '/#desk' },
+  { label: 'Marie', href: '/#marie' },
+  { label: 'Founding Partners', href: '/#partners' },
+  { label: 'About', href: '/about.html' },
+] as const;
 ---
 
 <header class="site-header" data-header>
   <div class="nav-wrap container">
-    <a class="brand" href="/">
-      Second Line AI
+    <a class="brand" href="/" aria-label="Second Line AI home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-dot"></span></span>
+      Second Line <span class="brand-accent">AI</span>
     </a>
 
     <nav class="nav-links" aria-label="Primary">
-      {
-        NAV_LINKS.map((link) => (
-          <a
-            href={link.href}
-            aria-current={currentPath === link.href ? 'page' : undefined}
-            class:list={{ 'is-active': currentPath === link.href }}
-          >
-            {link.label}
-          </a>
-        ))
-      }
+      {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
 
     <div class="nav-cta">
+      <a class="phone-link" href={CONTACT.phoneHref}>
+        <Icon name="phone" class="phone-icon" />
+        {CTA.callMarie}
+      </a>
       <Button href={BOOKING_URL} variant="primary" class="nav-btn" external>
-        {NAV_CTA_LABEL}
+        {CTA.bookShort}
       </Button>
     </div>
 
@@ -47,16 +59,14 @@ const currentPath = Astro.url.pathname;
 
   <div class="mobile-panel" id="mobile-panel" data-mobile-panel>
     <nav aria-label="Mobile">
-      {
-        NAV_LINKS.map((link) => (
-          <a href={link.href} aria-current={currentPath === link.href ? 'page' : undefined}>
-            {link.label}
-          </a>
-        ))
-      }
+      {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
+    <a class="mobile-phone" href={CONTACT.phoneHref}>
+      <Icon name="phone" class="phone-icon" />
+      {CTA.callMarie} — {CONTACT.phoneDisplay}
+    </a>
     <Button href={BOOKING_URL} variant="primary" size="large" class="mobile-cta" external>
-      {NAV_CTA_LABEL}
+      {CTA.bookShort}
     </Button>
   </div>
 </header>
@@ -77,8 +87,8 @@ const currentPath = Astro.url.pathname;
   }
 
   .site-header.is-scrolled {
-    background: rgba(20, 21, 15, 0.92);
-    backdrop-filter: blur(10px);
+    background: oklch(0.29 0.085 160 / 0.95);
+    backdrop-filter: blur(6px);
     border-bottom-color: var(--color-line-on-dark);
   }
 
@@ -91,13 +101,35 @@ const currentPath = Astro.url.pathname;
   }
 
   .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-family: var(--font-display);
     font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-ivory);
+    letter-spacing: -0.01em;
+    color: var(--color-ivory-bright);
     text-decoration: none;
-    letter-spacing: 0.01em;
     flex-shrink: 0;
+  }
+
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid oklch(0.68 0.13 82 / 0.7);
+  }
+
+  .brand-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-gold);
+  }
+
+  .brand-accent {
+    color: var(--color-gold);
   }
 
   .nav-links {
@@ -108,16 +140,18 @@ const currentPath = Astro.url.pathname;
   }
 
   .nav-links a {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-ivory-dim);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-ivory-bright);
+    opacity: 0.85;
     text-decoration: none;
     transition: color var(--duration-fast) var(--ease-standard);
   }
 
-  .nav-links a:hover,
-  .nav-links a.is-active {
-    color: var(--color-gold-light);
+  .nav-links a:hover {
+    opacity: 1;
+    color: var(--color-gold);
   }
 
   .nav-cta {
@@ -127,15 +161,33 @@ const currentPath = Astro.url.pathname;
     flex-shrink: 0;
   }
 
+  .phone-link,
+  .mobile-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .phone-icon {
+    width: 15px;
+    height: 15px;
+  }
+
   :global(.nav-btn) {
-    padding: 11px 22px;
+    min-height: 42px;
+    padding-inline: 20px;
     font-size: 0.8125rem;
   }
 
   .nav-toggle {
     display: none;
     background: none;
-    border: 1px solid var(--color-line-on-dark);
+    border: 1px solid oklch(0.98 0.008 82 / 0.25);
     border-radius: var(--radius-sm);
     padding: 10px 12px;
     cursor: pointer;
@@ -145,7 +197,7 @@ const currentPath = Astro.url.pathname;
     display: block;
     width: 20px;
     height: 2px;
-    background: var(--color-ivory);
+    background: var(--color-ivory-bright);
     margin: 4px 0;
   }
 
@@ -153,9 +205,9 @@ const currentPath = Astro.url.pathname;
     display: none;
     flex-direction: column;
     gap: 4px;
-    background: var(--color-charcoal);
+    background: var(--color-emerald);
     border-top: 1px solid var(--color-line-on-dark);
-    padding: 8px 24px 24px;
+    padding: 8px 20px 24px;
   }
 
   .mobile-panel nav {
@@ -165,10 +217,16 @@ const currentPath = Astro.url.pathname;
 
   .mobile-panel a {
     padding: 14px 0;
-    color: var(--color-ivory-dim);
+    color: var(--color-ivory-bright);
+    opacity: 0.85;
     text-decoration: none;
     font-size: 1rem;
     border-bottom: 1px solid var(--color-line-on-dark);
+  }
+
+  .mobile-phone {
+    margin-top: 14px;
+    font-size: 1rem;
   }
 
   :global(.mobile-cta) {
@@ -181,7 +239,7 @@ const currentPath = Astro.url.pathname;
   }
 
   .site-header.is-open {
-    background: var(--color-charcoal);
+    background: var(--color-emerald);
   }
 
   @media (max-width: 900px) {

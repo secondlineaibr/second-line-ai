@@ -1,4 +1,12 @@
 ---
+/**
+ * Matches Blink's ButtonLink/ghost-link exactly: sharp radius, bold text,
+ * diagonal arrow that shifts on hover, lift + shadow. Blink drives the
+ * primary button's fill color with a manual `light` prop per call site
+ * (gold on a dark section, emerald elsewhere); here it's automatic via
+ * section context instead — same rendered result, no call-site bookkeeping
+ * to get wrong.
+ */
 import Icon from '@components/Icon.astro';
 
 interface Props {
@@ -32,7 +40,7 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, className]
   rel={external ? 'noopener noreferrer' : undefined}
 >
   <slot />
-  {showArrow && <Icon name="arrow-right" class="btn-icon" />}
+  {showArrow && <Icon name="arrow-up-right" class="btn-icon" />}
 </Tag>
 
 <style>
@@ -41,12 +49,13 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, className]
     align-items: center;
     justify-content: center;
     gap: 0.6em;
+    min-height: 48px;
     font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.9375rem;
+    font-weight: 700;
+    font-size: 0.875rem;
     letter-spacing: 0.01em;
-    padding: 16px 30px;
-    border-radius: var(--radius-md);
+    padding-inline: 22px;
+    border-radius: var(--radius-sm);
     border: 1px solid transparent;
     cursor: pointer;
     text-decoration: none;
@@ -60,20 +69,26 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, className]
   }
 
   .btn--large {
-    padding: 19px 36px;
+    min-height: 56px;
+    padding-inline: 28px;
     font-size: 1rem;
   }
 
   .btn--primary {
     background: var(--color-emerald);
-    color: var(--color-ivory);
-    box-shadow: var(--shadow-sm);
+    color: var(--color-ivory-bright);
   }
 
   .btn--primary:hover {
-    background: var(--color-emerald-bright);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* On a dark (emerald) section, the primary CTA flips to gold-filled —
+     matching Blink's manual `light` prop, just driven by context instead. */
+  :global(.section--emerald) .btn--primary {
+    background: var(--color-gold);
+    color: var(--color-obsidian);
   }
 
   .btn--secondary {
@@ -83,31 +98,30 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, className]
   }
 
   .btn--secondary:hover {
-    background: var(--color-emerald);
-    color: var(--color-ivory);
+    border-color: var(--color-gold-deep);
+    color: var(--color-gold-deep);
   }
 
-  /* On dark section backgrounds, secondary buttons flip to ivory/gold */
-  :global(.section--emerald) .btn--secondary,
-  :global(.section--charcoal) .btn--secondary {
-    border-color: var(--color-gold-light);
-    color: var(--color-ivory);
+  :global(.section--emerald) .btn--secondary {
+    border-color: var(--color-ivory-bright);
+    color: var(--color-ivory-bright);
+    opacity: 0.85;
   }
 
-  :global(.section--emerald) .btn--secondary:hover,
-  :global(.section--charcoal) .btn--secondary:hover {
-    background: var(--color-gold-light);
-    color: var(--color-obsidian);
+  :global(.section--emerald) .btn--secondary:hover {
+    opacity: 1;
+    border-color: var(--color-gold);
+    color: var(--color-gold);
   }
 
   .btn-icon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     transition: transform var(--duration-base) var(--ease-standard);
   }
 
   .btn:hover .btn-icon {
-    transform: translateX(3px);
+    transform: translate(2px, -2px);
   }
 
   @media (prefers-reduced-motion: reduce) {

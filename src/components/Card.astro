@@ -19,9 +19,8 @@ const { as: Tag = 'div', class: className } = Astro.props;
     padding: var(--space-4) var(--space-4);
   }
 
-  :global(.section--emerald) .card,
-  :global(.section--charcoal) .card {
-    background: rgba(246, 241, 227, 0.05);
+  :global(.section--emerald) .card {
+    background: oklch(0.98 0.008 82 / 0.08);
     border-color: var(--color-line-on-dark);
   }
 

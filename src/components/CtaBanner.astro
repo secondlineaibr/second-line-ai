@@ -1,6 +1,7 @@
 ---
 import Button from '@components/Button.astro';
 import Eyebrow from '@components/Eyebrow.astro';
+import Icon from '@components/Icon.astro';
 import { BOOKING_URL, CONTACT, CTA } from '@lib/constants';
 
 interface Props {
@@ -27,12 +28,13 @@ const {
   <h2>{heading}</h2>
   {body && <p class="cta-body">{body}</p>}
   <div class="cta-actions">
-    <Button href={BOOKING_URL} variant="primary" size="large" external>
+    <Button href={BOOKING_URL} variant="primary" size="large" showArrow external>
       {primaryLabel}
     </Button>
     {
       showPhone && (
         <Button href={CONTACT.phoneHref} variant="secondary" size="large">
+          <Icon name="phone" class="cta-phone-icon" />
           {CTA.callMarie} — {CONTACT.phoneDisplay}
         </Button>
       )
@@ -62,5 +64,10 @@ const {
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--space-3);
+  }
+
+  :global(.cta-phone-icon) {
+    width: 16px;
+    height: 16px;
   }
 </style>
