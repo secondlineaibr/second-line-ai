@@ -80,7 +80,17 @@ const {
   }
 
   .section--gold {
-    background: var(--color-gold);
+    /* A subtle gradient + hairline top/bottom borders, not a flat fill —
+       a flat full-bleed accent color reads as an "uninterrupted field"
+       at section height; the gradient and frame keep it premium and
+       editorial instead. */
+    background: linear-gradient(
+      165deg,
+      oklch(0.72 0.13 82) 0%,
+      var(--color-gold) 55%,
+      oklch(0.62 0.12 79) 100%
+    );
+    border-block: 1px solid oklch(0.22 0.012 55 / 0.14);
     color: var(--color-obsidian);
   }
 

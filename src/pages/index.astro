@@ -195,7 +195,7 @@ const faqStructuredData = {
             </Button>
             <Button href={CONTACT.phoneHref} variant="secondary" size="large">
               <Icon name="phone" class="hero-phone-icon" />
-              Meet Marie · {CONTACT.phoneDisplay}
+              {CTA.callMarie} — {CONTACT.phoneDisplay}
             </Button>
           </div>
           <p class="hero-note">
@@ -248,7 +248,7 @@ const faqStructuredData = {
     </div>
 
     <!-- ============ Recognition ============ -->
-    <SectionWrap tone="ivory">
+    <SectionWrap tone="ivory" tight>
       <div class="recognition-grid">
         <div>
           <Eyebrow>Recognition</Eyebrow>
@@ -334,7 +334,7 @@ const faqStructuredData = {
           <div class="marie-actions">
             <Button href={CONTACT.phoneHref} variant="primary" size="large">
               <Icon name="phone" class="hero-phone-icon" />
-              Call {CONTACT.phoneDisplay}
+              {CTA.callMarie} — {CONTACT.phoneDisplay}
             </Button>
             <span class="marie-demo-note"><Icon name="calendar" class="link-icon" /> Live demo line</span>
           </div>
@@ -378,7 +378,7 @@ const faqStructuredData = {
     </SectionWrap>
 
     <!-- ============ Founding Partners ============ -->
-    <SectionWrap tone="gold" id="partners">
+    <SectionWrap tone="gold" tight id="partners">
       <div class="partners-grid">
         <div>
           <Eyebrow>For the Early Movers</Eyebrow>
@@ -388,14 +388,14 @@ const faqStructuredData = {
             first partners should have a voice in how the system evolves. Recognition is a
             byproduct of doing thoughtful work together — not the main reason to participate.
           </p>
-          <ul class="check-list">
-            {founderChecklist.map((item) => <li>{item}</li>)}
-          </ul>
         </div>
-        <Button href={BOOKING_URL} variant="primary" size="large" showArrow external class="partners-cta">
-          Ask About Founding Partner Status
-        </Button>
+        <ul class="check-list partners-list">
+          {founderChecklist.map((item) => <li>{item}</li>)}
+        </ul>
       </div>
+      <Button href={BOOKING_URL} variant="primary" size="large" showArrow external class="partners-cta">
+        Ask About Founding Partner Status
+      </Button>
     </SectionWrap>
 
     <!-- ============ Fit / Not a Fit ============ -->
@@ -464,9 +464,11 @@ const faqStructuredData = {
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     gap: var(--space-6);
-    align-items: center;
-    padding-top: calc(var(--header-height) + var(--space-5));
-    padding-bottom: var(--space-6);
+    /* start, not center: centering the shorter column left a large dead
+       gap below the hero copy on desktop. */
+    align-items: start;
+    padding-top: calc(var(--header-height) + var(--space-4));
+    padding-bottom: var(--space-4);
     position: relative;
   }
 
@@ -916,13 +918,17 @@ const faqStructuredData = {
 
   @media (min-width: 1024px) {
     .partners-grid {
-      grid-template-columns: 1fr auto;
-      align-items: end;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: start;
     }
   }
 
+  .partners-list {
+    margin: 0;
+  }
+
   :global(.partners-cta) {
-    align-self: start;
+    margin-top: var(--space-5);
   }
 
   /* ---------- Fit / not fit ---------- */
